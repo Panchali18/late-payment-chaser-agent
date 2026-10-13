@@ -93,7 +93,7 @@ build-log.md   each build step and what I learned
 
 ## Author
 
-Built by **Panchali Das** — [LinkedIn](LINKEDIN_URL)
+Built by **Panchali Das** — [LinkedIn](https://www.linkedin.com/in/panchalidas/)
 
 ## Licence
 
