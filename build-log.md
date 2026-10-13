@@ -25,5 +25,27 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - Table and column descriptions are worth writing early, because the agent can use them to understand the data.
 - A connected GitHub account isn't enough for Claude to commit; the Claude GitHub App also needs access to the specific repo.
 
+---
+
+## 13/10/2026 — Data model built in Dataverse
+
+**Done**
+- Built all four tables in the solution: Business Setting, Client, Invoice and Reminder Log, with descriptions on every table and column.
+- Added the business's settings row for Kestrel Lane (terms, reminder ladder, sender, signature, tone).
+- Used choice columns for currency, relationship, payment status, reminder stage, decision and outcome, with matching option values where two tables share a list.
+- Added lookups: Invoice → Client, and Reminder Log → Invoice.
+
+**Decisions**
+- Amounts are **Decimal**, not Dataverse's Currency type, which would add exchange-rate columns the agent doesn't need.
+- Date columns are **time-zone independent**, so a Melbourne due date never shifts when viewed from Dublin.
+- The invoice status column is **Payment status**, to avoid clashing with the built-in Status column, and the dispute state is labelled **Queried**.
+- Added EUR and INR as currency options for flexibility; test data uses the four main currencies.
+
+**Learned**
+- A column's technical name is fixed at creation. Renaming the display label isn't enough if the name is wrong, so I deleted and recreated a mislabelled column early, before anything depended on it.
+- Lookup columns can default to optional; required relationships need setting explicitly.
+- Choice values (not labels) are what flows compare, so shared lists must be created in the same order and checked.
+- The grid editor saves each cell automatically; multi-line text is easier to edit through the row form.
+
 **Next**
-- Finish the Business Setting columns, then create the Clients, Invoices and Reminders log tables.
+- Prepare synthetic test data (clients and invoices) as CSVs and import them.
