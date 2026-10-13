@@ -36,7 +36,7 @@ One row holding the business's configuration. Changing this table is how the age
 | Billing contact name | Text | |
 | Billing contact email | Email | Test addresses only |
 | Country | Text | AU, NZ, UK or US |
-| Currency | Choice | AUD, NZD, GBP, USD |
+| Currency | Choice | AUD, NZD, GBP, USD, EUR, INR |
 | Relationship | Choice | New, Regular, Long-standing |
 | Payment terms override (days) | Whole number | Blank means use the default |
 | Late fee applies | Yes/No | No for clients excluded from the late-fee clause |
@@ -50,7 +50,7 @@ One row holding the business's configuration. Changing this table is how the age
 | Client | Lookup → Clients | |
 | Amount | Currency (decimal) | Total invoiced |
 | Amount paid | Currency (decimal) | For part payments; outstanding = amount − amount paid |
-| Currency | Choice | Must match client currency |
+| Currency | Choice | Same options and order as Clients; must match client currency |
 | Issue date | Date only | |
 | Due date | Date only | |
 | Status | Choice | Open, Paid, Disputed |
