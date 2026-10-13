@@ -46,7 +46,7 @@ The full terms live in the knowledge document under `knowledge/`.
 - **Default terms:** 30 days from invoice date.
 - **Other terms:** 14 days for some new clients; 60 days for a few long-standing clients.
 - **Late fee:** the business's standard terms include a late-fee clause. Some client agreements exclude it, and the agent must respect that per client.
-- **Disputes:** a disputed invoice is never chased; it is escalated to the owner.
+- **Queries and disputes:** an invoice marked Queried is never chased; it is escalated to the owner.
 - **Promised dates:** if a client has promised a payment date that hasn't passed, the invoice is not chased.
 
 ## Reminder ladder (default, configurable)

@@ -53,7 +53,7 @@ One row holding the business's configuration. Changing this table is how the age
 | Currency | Choice | Same options and order as Clients; must match client currency |
 | Issue date | Date only | |
 | Due date | Date only | |
-| Payment status | Choice | Open, Paid, Disputed. Named to avoid clashing with the system Status column |
+| Payment status | Choice | Open, Paid, Queried (client has raised a query or dispute). Named to avoid clashing with the system Status column |
 | Promised pay date | Date only | Blank if none |
 | Last reminder stage | Choice | None, Pre-due, Due, Gentle, Formal, Final, Escalated |
 | Last reminder date | Date only | Stops the same invoice being chased twice in one day |
