@@ -47,5 +47,26 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - Choice values (not labels) are what flows compare, so shared lists must be created in the same order and checked.
 - The grid editor saves each cell automatically; multi-line text is easier to edit through the row form.
 
+---
+
+## 13/10/2026 — Test data, rules and knowledge document
+
+**Done**
+- Added a **Run date override** to Business Setting, set to 03/11/2026, so every test run treats the same day as "today" and results are repeatable.
+- Wrote the deterministic chasing rules ([docs/chasing-rules.md](docs/chasing-rules.md)) and generated 12 clients and 30 invoices designed around them, with the expected outcome for each invoice in [eval/test-set.csv](eval/test-set.csv): 17 drafts, 7 escalations, 6 not listed.
+- Checked the expected outcomes with an independent script that re-applies the rules: 0 mismatches.
+- Wrote the one-page payment terms document the agent will use for late-fee wording.
+- Imported clients and invoices into Dataverse and spot-checked dates against the source.
+
+**Problems and fixes**
+- **Lookup import failed:** the Excel importer expects the client's internal ID, not its name ("not a valid primary id Guid value"). Fixed by exporting clients with their IDs and building the invoice file with IDs in the Client column.
+- **Dates shifted by one day:** the importer read dates as local midnight and converted to UTC, so dates during Irish Summer Time landed a day early. Fixed by importing dates at midday. Caught by checking imported values against the source, not just row counts.
+- **Contradiction in the user stories** (queried invoices both "not listed" and "escalated") resolved: queried invoices are listed only as escalations.
+
+**Learned**
+- Define expected outcomes before building the agent; it turns evaluation into a comparison rather than a judgement call.
+- Always verify imported data field by field. A successful import can still be wrong, and a one-day date shift would silently break stage logic.
+- The import error log only opens after signing in to the environment's own URL.
+
 **Next**
-- Prepare synthetic test data (clients and invoices) as CSVs and import them.
+- Build the `GetDueInvoices` flow, which applies the chasing rules.
