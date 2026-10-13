@@ -1,0 +1,31 @@
+Invoice number,Client,Amount,Amount paid,Currency,Issue date,Due date,Payment status,Promised pay date,Last reminder stage,Last reminder date
+KL-2026-0101,Saltbush Retail Group,2840.50,,AUD,2026-10-14,2026-11-13,Open,,None,
+KL-2026-0102,Saltbush Retail Group,1275.00,,AUD,2026-10-09,2026-11-08,Open,,None,
+KL-2026-0103,Redwood Lane Media Inc,6400.00,,USD,2026-10-11,2026-11-10,Open,,None,
+KL-2026-0104,Kauri Coast Marketing,3180.75,,NZD,2026-10-04,2026-11-03,Open,,None,
+KL-2026-0105,Copperleaf Hospitality UK,1950.00,,GBP,2026-10-02,2026-11-01,Open,,Pre-due,2026-10-25
+KL-2026-0106,Saltbush Retail Group,4410.20,,AUD,2026-10-01,2026-10-31,Open,,Due,2026-10-31
+KL-2026-0107,Southern Alps Tourism Ltd,2675.00,,NZD,2026-10-15,2026-10-29,Open,,Due,2026-10-29
+KL-2026-0108,Canyon Ridge Trade Shows LLC,12850.00,,USD,2026-08-25,2026-10-24,Open,,Due,2026-10-24
+KL-2026-0109,Ironbark Civil Contractors,8920.40,,AUD,2026-10-06,2026-10-20,Open,,Gentle,2026-10-23
+KL-2026-0110,Harbourview Property Management,5300.00,,AUD,2026-09-18,2026-10-18,Open,,Gentle,2026-10-21
+KL-2026-0111,Thistle & Fern Design Studio,3725.60,,GBP,2026-09-14,2026-10-14,Open,,Gentle,2026-10-17
+KL-2026-0112,Northgate Exhibitions Ltd,4180.00,,GBP,2026-09-19,2026-10-19,Open,,Gentle,2026-10-22
+KL-2026-0113,Bluegum Events Co,15600.00,,AUD,2026-08-04,2026-10-03,Open,,Formal,2026-10-17
+KL-2026-0114,Kauri Coast Marketing,2240.00,,NZD,2026-08-30,2026-09-29,Open,,Formal,2026-10-13
+KL-2026-0115,Copperleaf Hospitality UK,6875.25,,GBP,2026-08-20,2026-09-19,Open,,Final,2026-10-19
+KL-2026-0116,Saltbush Retail Group,1890.00,1890.00,AUD,2026-09-26,2026-10-26,Paid,,Due,2026-10-26
+KL-2026-0117,Redwood Lane Media Inc,3300.00,3300.00,USD,2026-09-22,2026-10-22,Paid,,Gentle,2026-10-25
+KL-2026-0118,Ironbark Civil Contractors,2150.00,,AUD,2026-10-14,2026-10-28,Queried,,Due,2026-10-28
+KL-2026-0119,Canyon Ridge Trade Shows LLC,9480.00,,USD,2026-08-10,2026-10-09,Queried,,Gentle,2026-10-12
+KL-2026-0120,Bluegum Events Co,7200.00,,AUD,2026-08-26,2026-10-25,Open,2026-11-08,Due,2026-10-25
+KL-2026-0121,Thistle & Fern Design Studio,2960.00,,GBP,2026-09-16,2026-10-16,Open,2026-10-30,Gentle,2026-10-19
+KL-2026-0122,Saltbush Retail Group,4950.00,2000.00,AUD,2026-09-14,2026-10-14,Open,,Gentle,2026-10-17
+KL-2026-0123,Southern Alps Tourism Ltd,3600.00,1200.00,NZD,2026-10-16,2026-10-30,Open,,Due,2026-10-30
+KL-2026-0124,Redwood Lane Media Inc,2500.00,2500.00,USD,2026-09-29,2026-10-29,Open,,Due,2026-10-29
+KL-2026-0125,Wattle & Pine Cafes,1340.00,,AUD,2026-09-30,2026-10-30,Open,,Due,2026-10-30
+KL-2026-0126,Wattle & Pine Cafes,980.00,,AUD,2026-10-07,2026-11-06,Open,,None,
+KL-2026-0127,Northgate Exhibitions Ltd,2725.00,,GBP,2026-10-03,2026-11-02,Open,,Pre-due,2026-10-26
+KL-2026-0128,Harbourview Property Management,1610.00,,AUD,2026-09-29,2026-10-29,Open,,Gentle,2026-11-01
+KL-2026-0129,Kauri Coast Marketing,1480.00,,NZD,2026-10-01,2026-10-31,Open,,Due,2026-11-03
+KL-2026-0130,Bluegum Events Co,10450.00,,AUD,2026-08-13,2026-10-12,Open,,None,

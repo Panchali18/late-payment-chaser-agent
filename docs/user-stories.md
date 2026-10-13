@@ -12,10 +12,10 @@
 **Acceptance criteria**
 - Given open invoices exist, when I ask "What needs chasing?", the agent returns every invoice that is due within 7 days or overdue.
 - Each result shows invoice number, client, outstanding amount, currency, due date, days overdue, suggested stage and reason.
-- Invoices with payment status Paid or Queried are not included in the chase list.
-- Invoices with a promised pay date that hasn't passed are not chased.
-- An invoice already reminded today is not listed again.
-- The stage is calculated by rules from the Settings ladder, not by the LLM.
+- Paid invoices are not listed. Queried invoices are listed only as escalations, never drafted.
+- Invoices with a promised pay date that hasn't passed are not listed.
+- An invoice already contacted today, or already reminded at its current stage, is not listed again.
+- The stage is calculated by rules from the Business Setting ladder, not by the LLM, using the run date override when set. Full rules: [chasing-rules.md](chasing-rules.md).
 
 ## US-02 Draft a reminder in context
 
@@ -35,7 +35,7 @@
 **As an** owner, **I want** sensitive cases escalated to me rather than drafted, **so that** I handle them personally.
 
 **Acceptance criteria**
-- The agent escalates, with no draft, when: the invoice is queried (disputed), the client note signals vulnerability or a sensitive situation, or the invoice is past the final stage.
+- The agent escalates, with no draft, when the rules flag it (invoice queried, final notice already sent, promised date missed, zero balance still open) or when the client note signals hardship or a sensitive situation.
 - Each escalation records a reason in the Reminders log.
 - The owner receives a notification in the test inbox.
 
@@ -99,6 +99,6 @@
 
 1. Does running Power Automate agent flows from the Copilot Studio trial use paid capacity?
 2. Can the developer tenant send email, or is the Gmail connector or "logged as sent" needed?
-3. Should the stage logic live in the `GetDueInvoices` flow or in Dataverse calculated columns? (Current lean: in the flow.)
+3. ~~Where should the stage logic live?~~ Decided for v1: in the `GetDueInvoices` flow, with a run date override for repeatable tests.
 4. Should Gentle-stage reminders for long-standing clients be skipped, or just softened?
-5. What happens when the promised pay date passes without payment: resume at the next stage, or escalate?
+5. ~~What happens when a promised pay date passes without payment?~~ Decided for v1: escalate to the owner.

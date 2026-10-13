@@ -27,6 +27,7 @@ One row holding the business's configuration. Changing this table is how the age
 | Owner email | Email | owner@kestrellane.example | Escalations go here; switched to a test inbox for sending |
 | Signature | Multiline text | | |
 | Tone | Choice | Friendly / Neutral / Formal | Default tone for drafts |
+| Run date override | Date only | 03/11/2026 | If set, treated as today so test runs are repeatable; blank in normal use |
 
 ## Client (`lpc_Client`)
 
