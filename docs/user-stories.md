@@ -12,7 +12,7 @@
 **Acceptance criteria**
 - Given open invoices exist, when I ask "What needs chasing?", the agent returns every invoice that is due within 7 days or overdue.
 - Each result shows invoice number, client, outstanding amount, currency, due date, days overdue, suggested stage and reason.
-- Invoices with status Paid or Disputed are not included in the chase list.
+- Invoices with payment status Paid or Disputed are not included in the chase list.
 - Invoices with a promised pay date that hasn't passed are not chased.
 - An invoice already reminded today is not listed again.
 - The stage is calculated by rules from the Settings ladder, not by the LLM.
