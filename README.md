@@ -73,6 +73,20 @@ The agent is tested against 30 synthetic invoices covering disputes, part paymen
 
 Full analysis: [eval/runs/run1-report.md](eval/runs/run1-report.md). Everything enforced by rules held; the errors were the LLM's bookkeeping across a long multi-invoice run (two invoices confused, one skipped while the summary reported it done). Fixes are planned for v1.1.
 
+## Deploying for a real business
+
+The design keeps business specifics in data, so adapting it means changing the data layer, not the agent.
+
+| Area | Demo | Real business |
+|---|---|---|
+| Invoices and clients | Synthetic data imported from Excel | Synced from the accounting system (for example Xero, QuickBooks or MYOB via Power Automate connectors) or imported on a schedule |
+| Business rules | Kestrel Lane's settings row | The business's own terms, reminder ladder, signature and tone, edited in one row |
+| Run date | Fixed (03/11/2026) for repeatable tests | Blank, so the real date is used |
+| Sending | Logged only | Approved drafts sent from the business's mailbox |
+| Running | On request | On request or a scheduled daily run |
+| Licensing | Free trials | Copilot Studio credits and Power Apps licences |
+| Go-live | — | Data protection review, a pilot with human approval of every draft, and the same evaluation run on the business's own data |
+
 ## Repository layout
 
 ```
