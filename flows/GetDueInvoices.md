@@ -1,0 +1,75 @@
+# Flow: GetDueInvoices
+
+**Type:** agent tool (built with a manual trigger for testing; switched to "When an agent calls the flow" once tested)
+**Purpose:** apply the deterministic [chasing rules](../docs/chasing-rules.md) and return the invoices that need action, each with a stage, an action (Draft or Escalate) and a reason.
+**AI involved:** none. This flow is pure rules, so its output can be tested exactly against [`eval/test-set.csv`](../eval/test-set.csv).
+
+## Design
+
+No loops: the flow uses `Select` and `Filter array` to transform all invoices in one pass, which is faster and easier to read than an "Apply to each" with nested conditions.
+
+| # | Action | Type | What it does |
+|---|---|---|---|
+| 1 | Manually trigger a flow | Trigger | Starts the flow (replaced by the agent trigger later) |
+| 2 | GetSettings | Dataverse: List rows | Reads the Business Setting row (row count 1) |
+| 3 | Settings | Compose | Picks that one row out of the list |
+| 4 | RunDate | Compose | Run date override if set, otherwise today in Melbourne |
+| 5 | StageRank | Compose | Orders the stages so "later than last reminder" can be checked |
+| 6 | GetInvoices | Dataverse: List rows | Reads all invoices |
+| 7 | Base | Select | Tidies each invoice and calculates outstanding amount and days overdue |
+| 8 | Staged | Select | Adds the stage from the reminder ladder |
+| 9 | Listed | Filter array | Keeps only invoices that should be listed |
+| 10 | Results | Select | Adds final stage, action and reason |
+| 11 | Output | Compose | Shows the result (replaced by "Respond to the agent" later) |
+
+## Expressions
+
+Dates are compared as `yyyy-MM-dd` text (`take(..., 10)`), so time zones can't shift them. `take` is used instead of `substring` because it doesn't fail on empty values.
+
+### 3. Settings (Compose)
+```
+first(outputs('GetSettings')?['body/value'])
+```
+
+### 4. RunDate (Compose)
+```
+if(empty(outputs('Settings')?['lpc_rundateoverride']), convertFromUtc(utcNow(), 'AUS Eastern Standard Time', 'yyyy-MM-dd'), take(coalesce(outputs('Settings')?['lpc_rundateoverride'], ''), 10))
+```
+
+### 5. StageRank (Compose)
+```
+json('{"Not yet":-1,"None":0,"Pre-due":1,"Due":2,"Gentle":3,"Formal":4,"Final":5,"Escalated":6}')
+```
+
+### 7. Base (Select)
+From: `outputs('GetInvoices')?['body/value']` · Map (text mode):
+```
+addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(json('{}'), 'invoiceId', item()?['lpc_invoiceid']), 'invoiceNumber', item()?['lpc_invoicenumber']), 'clientId', item()?['_lpc_client_value']), 'clientName', item()?['_lpc_client_value@OData.Community.Display.V1.FormattedValue']), 'currency', item()?['lpc_currency@OData.Community.Display.V1.FormattedValue']), 'outstanding', sub(item()?['lpc_amount'], coalesce(item()?['lpc_amountpaid'], 0))), 'dueDate', take(item()?['lpc_duedate'], 10)), 'daysOverdue', div(sub(ticks(outputs('RunDate')), ticks(take(item()?['lpc_duedate'], 10))), 864000000000)), 'paymentStatus', item()?['lpc_paymentstatus@OData.Community.Display.V1.FormattedValue']), 'promisedDate', take(coalesce(item()?['lpc_promisedpaydate'], ''), 10)), 'lastStage', coalesce(item()?['lpc_lastreminderstage@OData.Community.Display.V1.FormattedValue'], 'None')), 'lastDate', take(coalesce(item()?['lpc_lastreminderdate'], ''), 10))
+```
+
+### 8. Staged (Select)
+From: `body('Base')` · Map (text mode):
+```
+addProperty(item(), 'calcStage', if(less(item()?['daysOverdue'], outputs('Settings')?['lpc_ladderpredueoffset']), 'Not yet', if(less(item()?['daysOverdue'], 0), 'Pre-due', if(less(item()?['daysOverdue'], outputs('Settings')?['lpc_laddergentleoffset']), 'Due', if(less(item()?['daysOverdue'], outputs('Settings')?['lpc_ladderformaloffset']), 'Gentle', if(less(item()?['daysOverdue'], outputs('Settings')?['lpc_ladderfinaloffset']), 'Formal', 'Final'))))))
+```
+
+### 9. Listed (Filter array)
+From: `body('Staged')` · Condition: the expression below **is equal to** `true`
+```
+and(not(equals(item()?['paymentStatus'], 'Paid')), not(equals(item()?['calcStage'], 'Not yet')), less(ticks(if(empty(item()?['promisedDate']), '1900-01-01', item()?['promisedDate'])), ticks(outputs('RunDate'))), not(equals(item()?['lastDate'], outputs('RunDate'))), or(equals(item()?['lastStage'], 'Final'), greater(outputs('StageRank')?[item()?['calcStage']], outputs('StageRank')?[item()?['lastStage']])))
+```
+
+### 10. Results (Select)
+From: `body('Listed')` · Map (text mode):
+```
+addProperty(addProperty(addProperty(item(), 'stage', if(equals(item()?['lastStage'], 'Final'), 'Escalated', item()?['calcStage'])), 'action', if(or(equals(item()?['lastStage'], 'Final'), equals(item()?['paymentStatus'], 'Queried'), not(empty(item()?['promisedDate'])), lessOrEquals(item()?['outstanding'], 0)), 'Escalate', 'Draft')), 'reason', if(equals(item()?['lastStage'], 'Final'), 'Final notice already sent', if(equals(item()?['paymentStatus'], 'Queried'), 'Invoice queried by client', if(not(empty(item()?['promisedDate'])), 'Promised pay date missed', if(lessOrEquals(item()?['outstanding'], 0), 'Balance is zero but invoice is still open; check whether it has been paid', if(less(item()?['daysOverdue'], 0), concat('Due in ', string(mul(item()?['daysOverdue'], -1)), ' days'), if(equals(item()?['daysOverdue'], 0), 'Due today', concat(string(item()?['daysOverdue']), ' days overdue'))))))))
+```
+
+### 11. Output (Compose)
+```
+body('Results')
+```
+
+## Expected result on run date 03/11/2026
+
+24 invoices listed: 19 marked Draft by the rules (2 of which the agent should escalate on reading the client notes) and 5 marked Escalate, with stages as in `eval/test-set.csv`. 6 invoices are not listed.
