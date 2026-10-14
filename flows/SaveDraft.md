@@ -97,3 +97,9 @@ addProperty(addProperty(addProperty(addProperty(json('{}'), 'saved', false), 'fa
 ## Known limitation
 
 Fact checks look for the required facts, not for extra wrong ones. A draft containing the right amount **and** a second, invented amount would pass. The human review step and the evaluation's "invented content" metric cover this in v1.
+
+## Test result (14/10/2026)
+
+- Correct Formal draft for KL-2026-0112: **True** branch, saved to Reminder Log as Pending.
+- Same draft with the amount changed to GBP 4,800.00: **False** branch, nothing saved.
+- Testing note: Power Automate's test panel can rerun the previous inputs; choose **Manually** and re-enter values for each negative test.
