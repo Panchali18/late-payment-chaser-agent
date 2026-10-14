@@ -1,6 +1,6 @@
 # Tool descriptions (v1.0)
 
-Pasted into each tool's description in Copilot Studio. The agent uses these to decide when and how to call each tool.
+Written for each tool's description. Note: the current Copilot Studio agent uses each flow's own description (set in the flow's details) rather than a separate tool description, so these are the intended wording to paste into the flow descriptions if tool selection needs tuning. The agent uses these to decide when and how to call each tool.
 
 ## GetDueInvoices
 Returns the invoices that need action, after applying the business's chasing rules. Each item has invoiceId, invoiceNumber, clientId, clientName, currency, outstanding, dueDate, daysOverdue, stage, action (Draft or Escalate) and reason. Call this once at the start of every chasing run. It takes no inputs. Its list is final: do not add, remove or re-stage invoices.

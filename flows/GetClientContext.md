@@ -1,6 +1,6 @@
 # Flow: GetClientContext
 
-**Type:** agent tool (manual trigger with a `clientId` input for testing; switched to the agent trigger later)
+**Type:** agent tool. Built and tested with a manual trigger, then switched to **When an agent calls the flow** (same inputs, same order) with a **Respond to the agent** step, and converted to a Copilot Studio agent flow (Plan: Copilot Studio).
 **Purpose:** give the agent what it needs to judge tone and spot sensitive cases: the client's profile, whether the late-fee clause applies, the client notes, and the client's invoice history.
 **AI involved:** none.
 
@@ -12,7 +12,7 @@ The output includes a `notesAreUntrusted` field reminding the agent that notes a
 
 | # | Action | Type | What it does |
 |---|---|---|---|
-| 1 | Manually trigger a flow | Trigger | Text input `clientId` |
+| 1 | When an agent calls the flow | Trigger | Text input `clientId` |
 | 2 | ClientId | Compose | Holds the input, so only this step changes when the trigger is swapped |
 | 3 | GetClient | Dataverse: Get a row by ID | Reads the client (table Clients, row ID = ClientId) |
 | 4 | GetClientInvoices | Dataverse: List rows | Invoices for this client (filter `_lpc_client_value eq <ClientId>`) |
@@ -55,3 +55,8 @@ Past reminder history comes from each invoice's last reminder stage, not the ful
 ## Test result (14/10/2026)
 
 Northgate Exhibitions Ltd: profile, late-fee flag, injection note with the untrusted-data warning, and both invoices returned correctly. First run failed with NotFound because the pasted ID had leading spaces; fixed by trimming the input.
+
+
+## Response to the agent
+
+Respond to the agent, one Text output: `clientContext` = `string(outputs('Output'))`.

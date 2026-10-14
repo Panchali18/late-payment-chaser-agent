@@ -1,6 +1,6 @@
 # Flow: GetDueInvoices
 
-**Type:** agent tool (built with a manual trigger for testing; switched to "When an agent calls the flow" once tested)
+**Type:** agent tool. Built and tested with a manual trigger, then switched to **When an agent calls the flow** (same inputs, same order) with a **Respond to the agent** step, and converted to a Copilot Studio agent flow (Plan: Copilot Studio).
 **Purpose:** apply the deterministic [chasing rules](../docs/chasing-rules.md) and return the invoices that need action, each with a stage, an action (Draft or Escalate) and a reason.
 **AI involved:** none. This flow is pure rules, so its output can be tested exactly against [`eval/test-set.csv`](../eval/test-set.csv).
 
@@ -10,7 +10,7 @@ No loops: the flow uses `Select` and `Filter array` to transform all invoices in
 
 | # | Action | Type | What it does |
 |---|---|---|---|
-| 1 | Manually trigger a flow | Trigger | Starts the flow (replaced by the agent trigger later) |
+| 1 | When an agent calls the flow | Trigger | Starts the flow (replaced by the agent trigger later) |
 | 2 | GetSettings | Dataverse: List rows | Reads the Business Setting row (row count 1) |
 | 3 | Settings | Compose | Picks that one row out of the list |
 | 4 | RunDate | Compose | Run date override if set, otherwise today in Melbourne |
@@ -77,3 +77,8 @@ body('Results')
 ## Test result (14/10/2026)
 
 Run against the 30 test invoices with run date 03/11/2026: **30/30 match the expected outcome**. Full comparison: [`eval/results-getdueinvoices.csv`](../eval/results-getdueinvoices.csv).
+
+
+## Response to the agent
+
+Respond to the agent, one Text output: `invoices` = `string(outputs('Output'))`.

@@ -1,6 +1,6 @@
 # Flow: SaveDraft
 
-**Type:** agent tool (manual trigger with four text inputs for testing; switched to the agent trigger later)
+**Type:** agent tool. Built and tested with a manual trigger, then switched to **When an agent calls the flow** (same inputs, same order) with a **Respond to the agent** step, and converted to a Copilot Studio agent flow (Plan: Copilot Studio).
 **Purpose:** the agent's only way to store a reminder. The draft is checked against the invoice record and the business's rules **before** it is saved. A draft that fails is not saved; the agent gets the failed checks and the correct facts so it can rewrite.
 **AI involved:** none. This is the deterministic guardrail around the LLM's output.
 
@@ -30,7 +30,7 @@ The agent's instructions tell it to write amounts and dates in exactly these for
 
 | # | Action | Type |
 |---|---|---|
-| 1 | Manually trigger a flow | Trigger (4 text inputs) |
+| 1 | When an agent calls the flow | Trigger (4 text inputs) |
 | 2 | In | Compose: tidies the inputs |
 | 3 | GetInvoice | Dataverse: Get a row by ID (Invoices, row ID `outputs('In')?['invoiceId']`) |
 | 4 | GetClient | Dataverse: Get a row by ID (Clients, row ID `outputs('GetInvoice')?['body/_lpc_client_value']`) |
@@ -103,3 +103,8 @@ Fact checks look for the required facts, not for extra wrong ones. A draft conta
 - Correct Formal draft for KL-2026-0112: **True** branch, saved to Reminder Log as Pending.
 - Same draft with the amount changed to GBP 4,800.00: **False** branch, nothing saved.
 - Testing note: Power Automate's test panel can rerun the previous inputs; choose **Manually** and re-enter values for each negative test.
+
+
+## Response to the agent
+
+Respond to the agent, one Text output: `result` = `string(outputs('OutputSaved'))` in the True branch and `string(outputs('OutputRejected'))` in the False branch.

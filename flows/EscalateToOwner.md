@@ -1,6 +1,6 @@
 # Flow: EscalateToOwner
 
-**Type:** agent tool (manual trigger with four text inputs for testing; switched to the agent trigger later)
+**Type:** agent tool. Built and tested with a manual trigger, then switched to **When an agent calls the flow** (same inputs, same order) with a **Respond to the agent** step, and converted to a Copilot Studio agent flow (Plan: Copilot Studio).
 **Purpose:** record that an invoice needs the owner's personal attention, with the reason. No reminder is drafted.
 **AI involved:** none.
 
@@ -17,7 +17,7 @@
 
 | # | Action | Type |
 |---|---|---|
-| 1 | Manually trigger a flow | Trigger (4 text inputs) |
+| 1 | When an agent calls the flow | Trigger (4 text inputs) |
 | 2 | In | Compose |
 | 3 | GetInvoice | Dataverse: Get a row by ID (Invoices) |
 | 4 | AddEscalation | Dataverse: Add a new row (Reminder Logs) |
@@ -52,3 +52,8 @@ The owner sees escalations in the review screen (Decision = Pending, Outcome = E
 ## Test result (14/10/2026)
 
 KL-2026-0115, stage Escalated, reason "Final notice already sent": escalation row added to Reminder Log; all steps succeeded.
+
+
+## Response to the agent
+
+Respond to the agent, one Text output: `result` = `string(outputs('Output'))`.

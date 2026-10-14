@@ -4,7 +4,7 @@ A human-in-the-loop AI agent that drafts late-payment reminders for a small B2B 
 
 > **Demonstration only.** The business, clients, invoices and contacts are fictional and all data is synthetic. No real emails are sent to clients.
 
-**Status:** in progress (v1). See the [build log](build-log.md).
+**Status:** v1 working end to end in a sandbox: rule engine, four agent tools, Copilot Studio agent, two evaluation runs and a review app. Still to do: send-and-log flow, client notes on the review screen, a rule-based "handle personally" flag. See the [build log](build-log.md).
 
 ---
 
@@ -46,15 +46,15 @@ Small B2B businesses lose cash to late invoices because chasing is awkward and e
 
 | Layer | Tool |
 |---|---|
-| Agent | Microsoft Copilot Studio (generative orchestration) |
-| Agent tools | Power Automate agent flows |
+| Agent | Microsoft Copilot Studio (generative orchestration, GPT-5 Chat) · [setup](docs/agent-setup.md) |
+| Agent tools | Four Power Automate flows converted to Copilot Studio agent flows · [flows/](flows/) |
 | Data | Dataverse (Power Apps Developer Plan) |
-| Review screen | Power Apps canvas app |
-| Send and log | Power Automate cloud flow (no AI) |
+| Review screen | Reminder Review app, generated from a written brief with Copilot Studio App (preview) · [app](apps/reminder-review.md) |
+| Send and log | Planned: non-AI flow triggered by an approval |
 | Knowledge | One-page payment terms document |
 | Documentation | GitHub (this repo) |
 
-All on free tiers and trials, in a personal sandbox tenant.
+All on free tiers and trials in a personal sandbox tenant, using a one-month Copilot Studio trial (25,000 Copilot Credits).
 
 ## Evaluation
 
@@ -94,6 +94,7 @@ docs/          project brief, business profile, user stories, data model
 data/          synthetic CSVs to import into Dataverse
 knowledge/     payment terms document used by the agent
 prompts/       agent instructions and tool descriptions, versioned
+apps/          the review app and the brief used to generate it
 flows/         what each Power Automate flow does, with screenshots
 solution/      exported Power Platform solution
 eval/          test set and results
