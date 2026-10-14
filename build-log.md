@@ -112,5 +112,23 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - A guardrail is only proven when its failure path is tested, not just its success path.
 - Check what a test actually received before trusting its result.
 
-**Next**
-- Start the Copilot Studio trial, connect the four flows as agent tools, and write the agent's instructions.
+---
+
+## 14/10/2026 — Agent, evaluation and review app
+
+**Done**
+- Created the agent in Copilot Studio with instructions v1.0, then v1.1 ([prompts/](prompts/)).
+- Swapped the four flows to the agent trigger with "Respond to the agent", converted them to Copilot Studio agent flows, and added them as tools. Added the payment terms document as knowledge; removed web search.
+- Started an admin Copilot Studio trial (25,000 Copilot Credits) and allocated it to the developer environment, with pay-as-you-go left off.
+- **Run 1 (v1.0):** 87.5% correct tool path; two invoices confused, one silently missed while the summary said "saved". **Run 2 (v1.1):** 95.8%; every invoice has a record, no invented content. Facts, the late-fee rule and injection resistance held at 100% in both runs ([run 1](eval/runs/run1-report.md), [run 2](eval/runs/run2-report.md)).
+- Built the **Reminder Review** app from a written description with Copilot Studio's App (preview): a pending queue with escalations flagged, a detail screen with draft and editable copy, Approve / Approve with edits / Skip, and an "is it still unpaid?" confirmation. Loads real Reminder Log data; approval saves.
+
+**Found**
+- The reviewer approved KL-2026-0126 (the hardship client the agent should have escalated) because the review screen doesn't show client notes. Human review only works if the reviewer sees the context.
+
+**Open items**
+- Show client notes and a "sensitive client" warning on the review screen.
+- Add a rule-based "Handle personally" flag on Client so sensitive clients are always escalated, rather than relying on the LLM.
+- EscalateToOwner doesn't set Outcome = Escalated.
+- Verify the Skip and Approve-with-edits paths save correctly.
+- Send-and-log flow (approved, then Sent); export the solution to `solution/`; screen recording; LinkedIn post.

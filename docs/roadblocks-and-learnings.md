@@ -101,3 +101,7 @@ A running record of what got in the way while building this project, how it was 
 
 6. **My agent said it saved 17 drafts. It saved 15.** Why you score agents on the database, not the chat.
 7. **87.5% isn't a pass:** what one evaluation run taught me about where rules end and the LLM begins.
+
+### 14. Human review without context isn't a safeguard
+**What happened:** In testing the review app, the reviewer approved a friendly reminder to the hardship client, the same case the agent had missed, because the review screen showed the draft and invoice but not the client's notes.
+**Learning:** Human-in-the-loop only catches what the human can see. Design the review screen around the decisions the reviewer has to make, not just the AI's output.
