@@ -1,0 +1,201 @@
+﻿"lpc_decision","lpc_drafttext","lpc_editedtext","lpc_escalationreason","importsequencenumber","lpc_outcome","lpc_promptversion","lpc_reminderlogid","lpc_reminderreference","lpc_stage","statuscode","statecode","timezoneruleversionnumber","utcconversiontimezonecode","lpc_validationpassed","versionnumber","lpc_invoice","owningbusinessunit"
+"855830000","Subject: Overdue payment – Invoice KL-2026-0130
+
+Hi Priya,
+
+Our records show that Invoice KL-2026-0130 for AUD 10,450.00, due on 12 October 2026, remains outstanding. This payment is now 22 days overdue under our terms. Please arrange payment or confirm a payment date as soon as possible.
+
+Under our payment terms, a late payment fee of 2% of the overdue amount may apply.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","50a838de-bec7-f111-a059-00224888bab8","KL-2026-0130 | Formal | 14/10/2026","855830004","1","0","","","True","2348247","1ccb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Payment due for Invoice KL-2026-0127
+
+Hi Oliver,
+
+This is a reminder that Invoice KL-2026-0127 for GBP 2,725.00 was due on 2 November 2026. Could you please confirm when payment will be made?
+
+If already arranged, no further action is needed. Otherwise, please advise if we should expect any delay.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","4fa838de-bec7-f111-a059-00224888bab8","KL-2026-0127 | Due | 14/10/2026","855830002","1","0","","","True","2348246","19cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Upcoming payment due for Invoice KL-2026-0126
+
+Hi Sophie,
+
+Just a friendly reminder that Invoice KL-2026-0126 for AUD 980.00 is due on 6 November 2026. We wanted to give you a quick heads-up so you can plan payment in good time.
+
+If anything on the invoice needs clarification, please let me know so we can assist before the due date.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","4ea838de-bec7-f111-a059-00224888bab8","KL-2026-0126 | Pre-due | 14/10/2026","855830001","1","0","","","True","2348244","18cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","","","Client notes indicate a sensitive situation; owner to handle personally.","","","v1.1","3e1c31d8-bec7-f111-a059-00224888bab8","KL-2026-0125 | Escalated | 14/10/2026","855830003","1","0","","","False","2348243","17cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","","","Balance is zero but invoice is still open; check whether it has been paid","","","v1.1","3d1c31d8-bec7-f111-a059-00224888bab8","KL-2026-0124 | Escalated | 14/10/2026","855830003","1","0","","","False","2348241","16cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Reminder – Invoice KL-2026-0123 still outstanding
+
+Hi Liam,
+
+I hope you’re well. Our records show that Invoice KL-2026-0123 for NZD 2,400.00, due on 30 October 2026, hasn’t yet been received. This is a gentle reminder in case it’s been overlooked.
+
+If payment has already been made, please disregard this message.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","3c1c31d8-bec7-f111-a059-00224888bab8","KL-2026-0123 | Gentle | 14/10/2026","855830003","1","0","","","True","2348240","15cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Overdue payment – Invoice KL-2026-0122
+
+Hi Marcus,
+
+Our records show that Invoice KL-2026-0122 for AUD 2,950.00, due on 14 October 2026, remains outstanding. This payment is now 20 days overdue under our terms. Please arrange payment or confirm a payment date as soon as possible.
+
+Under our payment terms, a late payment fee of 2% of the overdue amount may apply.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","53bc1ed1-bec7-f111-a059-00224888bab8","KL-2026-0122 | Formal | 14/10/2026","855830004","1","0","","","True","2348238","14cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","","","Promised pay date missed","","","v1.1","52bc1ed1-bec7-f111-a059-00224888bab8","KL-2026-0121 | Escalated | 14/10/2026","855830004","1","0","","","False","2348237","13cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","","","Invoice queried by client","","","v1.1","51bc1ed1-bec7-f111-a059-00224888bab8","KL-2026-0119 | Escalated | 14/10/2026","855830004","1","0","","","False","2348236","11cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","","","Invoice queried by client","","","v1.1","50bc1ed1-bec7-f111-a059-00224888bab8","KL-2026-0118 | Escalated | 14/10/2026","855830003","1","0","","","False","2348234","10cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","","","Final notice already sent","","","v1.1","4fbc1ed1-bec7-f111-a059-00224888bab8","KL-2026-0115 | Escalated | 14/10/2026","855830006","1","0","","","False","2348233","0dcb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Final reminder – Invoice KL-2026-0114
+
+Hi Aroha,
+
+Invoice KL-2026-0114 for NZD 2,240.00, due on 29 September 2026, remains outstanding. This payment is now 35 days overdue. Please arrange payment within 7 days to avoid referral to our business owner for follow-up.
+
+Under our payment terms, a late payment fee of 2% of the overdue amount may apply.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","403ed4c8-bec7-f111-a059-00224888bab8","KL-2026-0114 | Final | 14/10/2026","855830005","1","0","","","True","2348231","0ccb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Final reminder – Invoice KL-2026-0113
+
+Hi Priya,
+
+Invoice KL-2026-0113 for AUD 15,600.00, due on 3 October 2026, remains outstanding. This payment is now 31 days overdue. Please arrange payment within 7 days to avoid referral to our business owner for follow-up.
+
+Under our payment terms, a late payment fee of 2% of the overdue amount may apply.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","3f3ed4c8-bec7-f111-a059-00224888bab8","KL-2026-0113 | Final | 14/10/2026","855830005","1","0","","","True","2348230","0bcb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Overdue payment – Invoice KL-2026-0112
+
+Hi Oliver,
+
+Our records show that Invoice KL-2026-0112 for GBP 4,180.00, due on 19 October 2026, remains outstanding. This payment is now 15 days overdue under our terms. Please arrange payment or confirm a payment date as soon as possible.
+
+Under our payment terms, a late payment fee of 2% of the overdue amount may apply.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","3e3ed4c8-bec7-f111-a059-00224888bab8","KL-2026-0112 | Formal | 14/10/2026","855830004","1","0","","","True","2348228","09cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Overdue payment – Invoice KL-2026-0111
+
+Hi Fiona,
+
+Our records show that Invoice KL-2026-0111 for GBP 3,725.60, due on 14 October 2026, remains outstanding. This payment is now 20 days overdue. Please arrange settlement or confirm a payment date as soon as possible.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","3d3ed4c8-bec7-f111-a059-00224888bab8","KL-2026-0111 | Formal | 14/10/2026","855830004","1","0","","","True","2348227","08cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Overdue payment – Invoice KL-2026-0110
+
+Hi Ellie,
+
+Our records show that Invoice KL-2026-0110 for AUD 5,300.00, due on 18 October 2026, remains outstanding. This payment is now 16 days overdue. Please arrange payment or confirm when it will be made.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","7137f9c1-bec7-f111-a059-00224888bab8","KL-2026-0110 | Formal | 14/10/2026","855830004","1","0","","","True","2348225","07cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Overdue payment – Invoice KL-2026-0109
+
+Hi Dan,
+
+Our records show that Invoice KL-2026-0109 for AUD 8,920.40, due on 20 October 2026, remains outstanding. This payment is now 14 days overdue under our terms. Please arrange payment or confirm a payment date as soon as possible.
+
+Under our payment terms, a late payment fee of 2% of the overdue amount may apply.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","7037f9c1-bec7-f111-a059-00224888bab8","KL-2026-0109 | Formal | 14/10/2026","855830004","1","0","","","True","2348224","06cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Reminder – Invoice KL-2026-0108 still outstanding
+
+Hi Megan,
+
+I hope you’re well. Our records show that Invoice KL-2026-0108 for USD 12,850.00, due on 24 October 2026, hasn’t yet been received. It may have been missed, so this is just a gentle reminder to please arrange payment when convenient.
+
+If payment has already been made, please disregard this message.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","6f37f9c1-bec7-f111-a059-00224888bab8","KL-2026-0108 | Gentle | 14/10/2026","855830003","1","0","","","True","2348222","05cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Reminder – Invoice KL-2026-0107 still outstanding
+
+Hi Liam,
+
+I hope you’re well. Our records show that Invoice KL-2026-0107 for NZD 2,675.00, due on 29 October 2026, hasn’t yet been received. This is just a friendly reminder in case it slipped through.
+
+If payment has already been made, please disregard this message.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","e2459eb9-bec7-f111-a059-00224888bab8","KL-2026-0107 | Gentle | 14/10/2026","855830003","1","0","","","True","2348220","04cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Reminder – Invoice KL-2026-0106 still outstanding
+
+Hi Marcus,
+
+I hope you’re well. Our records show that Invoice KL-2026-0106 for AUD 4,410.20, due on 31 October 2026, hasn’t yet been received. It may have been overlooked, so this is a friendly reminder to please arrange payment when you can.
+
+If payment has already been made, please disregard this message.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","e0459eb9-bec7-f111-a059-00224888bab8","KL-2026-0106 | Gentle | 14/10/2026","855830003","1","0","","","True","2348219","03cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Payment due for Invoice KL-2026-0105
+
+Hi Hannah,
+
+This is a reminder that Invoice KL-2026-0105 for GBP 1,950.00 was due on 1 November 2026. Could you please confirm when payment will be made?
+
+If you have already arranged payment, no further action is required. Otherwise, please let me know if there are any issues delaying it.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","df459eb9-bec7-f111-a059-00224888bab8","KL-2026-0105 | Due | 14/10/2026","855830002","1","0","","","True","2348217","02cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Payment due for Invoice KL-2026-0104
+
+Hi Aroha,
+
+This is a reminder that Invoice KL-2026-0104 for NZD 3,180.75 is due today, 3 November 2026. Could you please confirm when payment will be made?
+
+If you have already arranged it, no further action is needed. Otherwise, please advise if there are any issues we should be aware of.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","d35575b1-bec7-f111-a059-00224888bab8","KL-2026-0104 | Due | 14/10/2026","855830002","1","0","","","True","2348216","01cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Upcoming payment due for Invoice KL-2026-0103
+
+Hi Carlos,
+
+Just a friendly reminder that Invoice KL-2026-0103 for USD 6,400.00 is due on 10 November 2026. We wanted to give you a quick heads-up so you can plan payment in good time.
+
+If anything on the invoice needs clarification, please let me know so we can assist before the due date.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","d25575b1-bec7-f111-a059-00224888bab8","KL-2026-0103 | Pre-due | 14/10/2026","855830001","1","0","","","True","2348214","00cb0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"
+"855830000","Subject: Upcoming payment due for Invoice KL-2026-0102
+
+Hi Marcus,
+
+Just a friendly reminder that Invoice KL-2026-0102 for AUD 1,275.00 is due on 8 November 2026. We wanted to give you a quick heads-up so you can plan payment in good time.
+
+If anything on the invoice needs clarification, please let me know so we can assist before the due date.
+
+Kind regards,
+Jordan Hale
+Accounts Manager, Kestrel Lane Print & Signage","","","","","v1.1","be5575b1-bec7-f111-a059-00224888bab8","KL-2026-0102 | Pre-due | 14/10/2026","855830001","1","0","","","True","2348212","ffca0b65-3dc7-f111-aaad-00224888bab8","59a2ff8a-65bf-f111-aaaf-7ced8d1165d4"

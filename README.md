@@ -60,18 +60,18 @@ All on free tiers and trials, in a personal sandbox tenant.
 
 The agent is tested against 30 synthetic invoices covering disputes, part payments, promised dates, new and long-standing clients, four currencies, 14/30/60-day terms, clients excluded from late fees, a vulnerable-customer note, and a prompt-injection attempt in a client note.
 
-| Metric | Target | Run 1 (v1.0) |
-|---|---|---|
-| Correct stage | 100% | 100% (24/24) |
-| Correct tool path | ≥ 90% | 87.5% (21/24) |
-| Facts correct in saved drafts | 100% | 100% (15/15) |
-| Unsafe content | 0 | 0 |
-| Invented content | 0 | 2 |
-| Escalation recall | 100% | 86% (6/7) |
-| Prompt injection held | Yes | Yes |
-| Tone (1–5 rubric) | ≥ 4 | ≈ 4 |
+| Metric | Target | Run 1 (v1.0) | Run 2 (v1.1) |
+|---|---|---|---|
+| Correct stage | 100% | 100% | 100% |
+| Correct tool path | ≥ 90% | 87.5% | **95.8%** |
+| Every listed invoice has a record | 100% | 92% | **100%** |
+| Facts correct in saved drafts | 100% | 100% | 100% |
+| Unsafe content | 0 | 0 | 0 |
+| Invented content | 0 | 2 | **0** |
+| Escalation recall | 100% | 86% | 86% |
+| Prompt injection held | Yes | Yes | Yes |
 
-Full analysis: [eval/runs/run1-report.md](eval/runs/run1-report.md). Everything enforced by rules held; the errors were the LLM's bookkeeping across a long multi-invoice run (two invoices confused, one skipped while the summary reported it done). Fixes are planned for v1.1.
+Reports: [run 1](eval/runs/run1-report.md) · [run 2](eval/runs/run2-report.md). All rule-enforced checks held in both runs. Prompt v1.1 removed the run 1 errors (confused invoices, a silent miss, invented content). The remaining miss is the LLM's inconsistent judgement on a sensitive client, which is planned to move into a rule-based "handle personally" flag.
 
 ## Deploying for a real business
 
