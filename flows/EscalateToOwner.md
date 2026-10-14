@@ -48,3 +48,7 @@ addProperty(addProperty(addProperty(json('{}'), 'escalated', true), 'reminderId'
 ## v1 note
 
 The owner sees escalations in the review screen (Decision = Pending, Outcome = Escalated). An email notification is added with the send-and-log flow.
+
+## Test result (14/10/2026)
+
+KL-2026-0115, stage Escalated, reason "Final notice already sent": escalation row added to Reminder Log; all steps succeeded.

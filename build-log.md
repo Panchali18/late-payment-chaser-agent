@@ -92,5 +92,25 @@ Each step of the build and what I learned. Newest entries at the bottom.
 **Known issue**
 - Reason text says "1 days overdue"; grammar fix planned when the flow is connected to the agent.
 
+---
+
+## 14/10/2026 — Remaining agent tools
+
+**Done**
+- `GetClientContext`: client profile, late-fee flag, notes (with an "untrusted data" warning built into the output) and invoice history. Tested on Northgate (injection note).
+- `SaveDraft`: checks each draft against the invoice record and business rules before saving. Tested both paths: a correct draft is saved as Pending; the same draft with a wrong amount is rejected and nothing is saved.
+- `EscalateToOwner`: records an escalation with its reason, no draft. Tested on KL-2026-0115 (final notice already sent).
+- Each flow's expressions were simulated before building ([flows/](flows/)).
+
+**Problems and fixes**
+- **NotFound on a client lookup:** the pasted ID had leading spaces. Fixed by trimming every ID input, which also protects against an agent adding spaces.
+- **Invalid filter expression:** mixing typed text and an expression chip in one field failed; one `concat()` expression worked.
+- **Name mismatch** (`GetInvoices` vs `GetInvoice`) broke references; renaming the action fixed it. Action names are part of the logic.
+- **Test panel reran old inputs**, so a "negative" test passed with the old, correct draft. Caught by checking the run's actual inputs. Negative tests now use fresh manual inputs.
+
+**Learned**
+- A guardrail is only proven when its failure path is tested, not just its success path.
+- Check what a test actually received before trusting its result.
+
 **Next**
-- Build the agent's other tools: `GetClientContext`, `SaveDraft` (with fact validation) and `EscalateToOwner`.
+- Start the Copilot Studio trial, connect the four flows as agent tools, and write the agent's instructions.
