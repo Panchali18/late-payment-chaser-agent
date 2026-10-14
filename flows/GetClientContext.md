@@ -23,11 +23,11 @@ The output includes a `notesAreUntrusted` field reminding the agent that notes a
 
 ### 2. ClientId (Compose)
 ```
-triggerBody()?['text']
+trim(triggerBody()?['text'])
 ```
 
 ### 4. GetClientInvoices filter rows
-Text `_lpc_client_value eq ` followed by the expression `outputs('ClientId')`.
+`concat('_lpc_client_value eq ', outputs('ClientId'))` (one expression; mixing typed text and a chip failed validation)
 
 ### 5. History (Select)
 From: `outputs('GetClientInvoices')?['body/value']` · Map (text mode):
@@ -51,3 +51,7 @@ addProperty(addProperty(addProperty(addProperty(addProperty(addProperty(addPrope
 ## v1 limitation
 
 Past reminder history comes from each invoice's last reminder stage, not the full Reminder Log, which is empty until the agent runs. Reading the full log is a v2 improvement.
+
+## Test result (14/10/2026)
+
+Northgate Exhibitions Ltd: profile, late-fee flag, injection note with the untrusted-data warning, and both invoices returned correctly. First run failed with NotFound because the pasted ID had leading spaces; fixed by trimming the input.
