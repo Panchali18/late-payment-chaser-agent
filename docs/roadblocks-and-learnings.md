@@ -80,3 +80,24 @@ A running record of what got in the way while building this project, how it was 
 3. **My agent can't save a wrong number:** a deterministic guardrail around an LLM, and the test that proved it.
 4. **Three bugs that weren't bugs:** a date stored as March, an ID with spaces, a test that reused old inputs. Verify what the system received.
 5. **When the platform moves under you:** Copilot Studio stopped accepting Power Automate flows mid-build, and why documented, tested logic made it a 10-minute fix.
+
+---
+
+## Agent evaluation (run 1)
+
+### 11. The chat summary didn't match what the agent did
+**What happened:** The agent's summary reported "Draft saved" for KL-2026-0130, but no draft exists. It also labelled KL-2026-0123 as a different client, and skipped KL-2026-0125 entirely.
+**How it was caught:** Scoring against the Reminder Log export, not the chat.
+**Learning:** Evaluate an agent on its actions, not its account of its actions. The guardrails (fact validation, no send tool) meant none of these errors could reach a client, but a silent miss is still a business failure.
+
+### 12. Context bleed between clients
+**What happened:** An escalation reason for one client quoted another client's notes. Two similar invoices (same stage, same days overdue) were swapped.
+**Learning:** Long multi-item runs are where LLM agents slip. Process one item at a time, restate identifiers before each tool call, and add a deterministic reconciliation check after the run.
+
+### 13. Credits
+**What happened:** 25,000 trial Copilot Credits came from an admin-started trial in the Microsoft 365 admin centre, then had to be allocated to the environment manually in the Power Platform admin centre.
+
+## More post ideas
+
+6. **My agent said it saved 17 drafts. It saved 15.** Why you score agents on the database, not the chat.
+7. **87.5% isn't a pass:** what one evaluation run taught me about where rules end and the LLM begins.
