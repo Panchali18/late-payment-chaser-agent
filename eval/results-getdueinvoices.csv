@@ -1,0 +1,31 @@
+case,invoice_number,expected_listed,expected_stage,expected_action,decided_by,flow_listed,flow_stage,flow_action,flow_reason,result
+1,KL-2026-0101,No,,None,rule,No,,None,,PASS
+2,KL-2026-0102,Yes,Pre-due,Draft,rule,Yes,Pre-due,Draft,Due in 5 days,PASS
+3,KL-2026-0103,Yes,Pre-due,Draft,rule,Yes,Pre-due,Draft,Due in 7 days,PASS
+4,KL-2026-0104,Yes,Due,Draft,rule,Yes,Due,Draft,Due today,PASS
+5,KL-2026-0105,Yes,Due,Draft,rule,Yes,Due,Draft,2 days overdue,PASS
+6,KL-2026-0106,Yes,Gentle,Draft,rule,Yes,Gentle,Draft,3 days overdue,PASS
+7,KL-2026-0107,Yes,Gentle,Draft,rule,Yes,Gentle,Draft,5 days overdue,PASS
+8,KL-2026-0108,Yes,Gentle,Draft,rule,Yes,Gentle,Draft,10 days overdue,PASS
+9,KL-2026-0109,Yes,Formal,Draft,rule,Yes,Formal,Draft,14 days overdue,PASS
+10,KL-2026-0110,Yes,Formal,Draft,rule,Yes,Formal,Draft,16 days overdue,PASS
+11,KL-2026-0111,Yes,Formal,Draft,rule,Yes,Formal,Draft,20 days overdue,PASS
+12,KL-2026-0112,Yes,Formal,Draft,rule,Yes,Formal,Draft,15 days overdue,PASS
+13,KL-2026-0113,Yes,Final,Draft,rule,Yes,Final,Draft,31 days overdue,PASS
+14,KL-2026-0114,Yes,Final,Draft,rule,Yes,Final,Draft,35 days overdue,PASS
+15,KL-2026-0115,Yes,Escalated,Escalate,rule,Yes,Escalated,Escalate,Final notice already sent,PASS
+16,KL-2026-0116,No,,None,rule,No,,None,,PASS
+17,KL-2026-0117,No,,None,rule,No,,None,,PASS
+18,KL-2026-0118,Yes,Gentle,Escalate,rule,Yes,Gentle,Escalate,Invoice queried by client,PASS
+19,KL-2026-0119,Yes,Formal,Escalate,rule,Yes,Formal,Escalate,Invoice queried by client,PASS
+20,KL-2026-0120,No,,None,rule,No,,None,,PASS
+21,KL-2026-0121,Yes,Formal,Escalate,rule,Yes,Formal,Escalate,Promised pay date missed,PASS
+22,KL-2026-0122,Yes,Formal,Draft,rule,Yes,Formal,Draft,20 days overdue,PASS
+23,KL-2026-0123,Yes,Gentle,Draft,rule,Yes,Gentle,Draft,4 days overdue,PASS
+24,KL-2026-0124,Yes,Gentle,Escalate,rule,Yes,Gentle,Escalate,Balance is zero but invoice is still open; check whether it has been paid,PASS
+25,KL-2026-0125,Yes,Gentle,Escalate,agent,Yes,Gentle,Draft,4 days overdue,PASS
+26,KL-2026-0126,Yes,Pre-due,Escalate,agent,Yes,Pre-due,Draft,Due in 3 days,PASS
+27,KL-2026-0127,Yes,Due,Draft,rule,Yes,Due,Draft,1 days overdue,PASS
+28,KL-2026-0128,No,,None,rule,No,,None,,PASS
+29,KL-2026-0129,No,,None,rule,No,,None,,PASS
+30,KL-2026-0130,Yes,Formal,Draft,rule,Yes,Formal,Draft,22 days overdue,PASS

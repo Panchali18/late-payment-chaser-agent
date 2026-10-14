@@ -68,5 +68,29 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - Always verify imported data field by field. A successful import can still be wrong, and a one-day date shift would silently break stage logic.
 - The import error log only opens after signing in to the environment's own URL.
 
+---
+
+## 14/10/2026 — GetDueInvoices flow (rule engine)
+
+**Done**
+- Built the `GetDueInvoices` flow in Power Automate: read settings, work out the run date, read invoices, then `Select` → `Select` → `Filter array` → `Select` to add facts, stage, filtering and action/reason. No loops.
+- Before building, simulated every expression against the test data (30/30), so problems in Power Automate could only be clicking or pasting issues.
+- Tested in stages: after the Base step (30 invoices × 9 fields checked against the source: 0 mismatches), then the full flow.
+- **Result: 30/30 test invoices match the expected outcome** (24 listed: 19 Draft, 5 Escalate; 6 not listed). Scored in [eval/results-getdueinvoices.csv](eval/results-getdueinvoices.csv).
+
+**Problems and fixes**
+- **Run date stored as 11 March, not 3 November:** typing 03/11/2026 in a US-format form saved it as month/day. Caught by reading the flow's raw output. Fixed by using the date picker.
+- **Expressions pasted as plain text:** in the new designer, expressions must go through the `fx` editor (or advanced mode with a leading `@`); pasted straight into a box they become literal text.
+- **Lost connection on a new Dataverse action:** fixed with "Change connection reference".
+- The classic designer's search didn't show the Dataverse actions; switching to the new designer (adding `?v3=true` to the flow's edit URL) fixed it.
+
+**Learned**
+- Test after each tricky step, not only at the end, so a failure points to one step.
+- Reading a flow's raw output is the most reliable way to see what the data really is.
+- `Select` and `Filter array` can replace most loops: faster, and the whole logic stays visible.
+
+**Known issue**
+- Reason text says "1 days overdue"; grammar fix planned when the flow is connected to the agent.
+
 **Next**
-- Build the `GetDueInvoices` flow, which applies the chasing rules.
+- Build the agent's other tools: `GetClientContext`, `SaveDraft` (with fact validation) and `EscalateToOwner`.

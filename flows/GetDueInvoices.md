@@ -73,3 +73,7 @@ body('Results')
 ## Expected result on run date 03/11/2026
 
 24 invoices listed: 19 marked Draft by the rules (2 of which the agent should escalate on reading the client notes) and 5 marked Escalate, with stages as in `eval/test-set.csv`. 6 invoices are not listed.
+
+## Test result (14/10/2026)
+
+Run against the 30 test invoices with run date 03/11/2026: **30/30 match the expected outcome**. Full comparison: [`eval/results-getdueinvoices.csv`](../eval/results-getdueinvoices.csv).
