@@ -19,6 +19,8 @@
 
 Without step 3, the agent stops at its first message: "This environment is out of credits."
 
+**Usage so far:** after two full evaluation runs, the Power Platform admin centre still reports 0 credits consumed for the environment (25,000 allocated). Recorded as "not yet reported by the admin centre", not as "free".
+
 ## How to run
 
 In the agent's **Preview** chat, ask "What needs chasing?". The agent works through the list from GetDueInvoices, saves drafts or escalates, and ends with a summary. Results are checked against the Reminder Log, not the chat.
