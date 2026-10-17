@@ -1,7 +1,7 @@
 # Project Brief: Late-Payment Chaser Agent (v1)
 
 ## Problem
-Small B2B businesses lose cash to late invoices because chasing is awkward and easy to postpone. Accounting tools send fixed-schedule reminders that ignore context: disputes, promised payment dates, long-standing clients, a client who has already paid but isn't marked as paid.
+Small B2B businesses lose cash to late invoices because it's hard to keep track of which invoices need a follow-up and which don't: what's coming due, what's overdue, what has been promised or queried, and who was already reminded. Accounting tools send fixed-schedule reminders that ignore that context: queried invoices, promised payment dates, long-standing clients, a client who has already paid but isn't marked as paid.
 
 ## Scenario
 Fictional small B2B business: Kestrel Lane Print & Signage Pty Ltd, Melbourne, Australia, with clients in Australia, New Zealand, the UK and the US (AUD, NZD, GBP, USD; 14, 30 and 60-day terms). See [business profile](business-profile.md). All data is synthetic. Global by design: the agent follows the business's own payment terms, never a country's law.

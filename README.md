@@ -1,6 +1,6 @@
 # Late-Payment Chaser Agent
 
-A human-in-the-loop AI agent that drafts late-payment reminders for a small B2B business, so the owner can chase overdue invoices in minutes instead of putting it off.
+A human-in-the-loop AI agent that works out which invoices need a follow-up for a small B2B business, drafts the reminders, and flags the cases the owner should handle personally.
 
 > **Demonstration only.** The business, clients, invoices and contacts are fictional and all data is synthetic. No real emails are sent to clients.
 
@@ -10,7 +10,7 @@ A human-in-the-loop AI agent that drafts late-payment reminders for a small B2B 
 
 ## The problem
 
-Small B2B businesses lose cash to late invoices because chasing is awkward and easy to postpone. Accounting tools send fixed-schedule reminders that ignore context: a disputed invoice, a client who has promised a payment date, a long-standing client who deserves a softer tone, or a client who has already paid but isn't marked as paid.
+Small B2B businesses lose cash to late invoices because it's hard to keep track of which invoices need a follow-up and which don't: what's coming due, what's overdue, what a client has promised to pay, what's been queried, and who was already reminded. Accounting tools send fixed-schedule reminders that ignore that context: a queried invoice, a promised payment date, a long-standing client who deserves a softer tone, or a client who has already paid but isn't marked as paid.
 
 ## What the agent does
 
