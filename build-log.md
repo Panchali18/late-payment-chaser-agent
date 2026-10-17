@@ -131,7 +131,7 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - Add a rule-based "Handle personally" flag on Client so sensitive clients are always escalated, rather than relying on the LLM.
 - EscalateToOwner doesn't set Outcome = Escalated.
 - Verify the Skip and Approve-with-edits paths save correctly.
-- Send-and-log flow (approved, then Sent); export the solution to `solution/`; screen recording; LinkedIn post.
+- Send-and-log flow (approved, then Sent); export the solution to `solution/`; screen recording.
 
 ---
 
@@ -175,4 +175,4 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - Re-run the evaluation with the Handle personally rule (run 3).
 - Existing escalation rows from runs 1–2 have a blank Outcome; the fix applies to new runs.
 - The send flow stamps the real date while tests use a fixed run date (3 Nov); harmless here, but a real deployment uses one date source.
-- Screen recording and LinkedIn post.
+- Screen recording.

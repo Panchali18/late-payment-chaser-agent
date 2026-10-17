@@ -68,4 +68,3 @@ Real email sending to clients, payment or bank integration, interest calculation
 - Working demo plus a 10–20 second screen recording
 - GitHub repo with README (problem, design, rules-vs-LLM split, eval results, limitations, "demonstration only" note)
 - Build log of each step and what I learned
-- A LinkedIn post in my "AI Build #n" series: problem, what I built, TLDR in numbers (tools, eval results, cost per draft, compliance note), one learning, link

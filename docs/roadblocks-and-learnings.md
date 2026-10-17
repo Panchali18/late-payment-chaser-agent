@@ -1,6 +1,6 @@
 # Roadblocks and Learnings
 
-A running record of what got in the way while building this project, how it was resolved, and what it teaches. Written for future builders, and as raw material for LinkedIn posts.
+A running record of what got in the way while building this project, how it was resolved, and what it teaches. Written for future builders.
 
 ---
 
@@ -73,14 +73,6 @@ A running record of what got in the way while building this project, how it was 
 
 ---
 
-## Post ideas
-
-1. **"Free" AI trials have four layers:** editor access, user licence, tenant capacity, environment allocation. Testing costs money from day one.
-2. **Rules first, AI last:** why the LLM in my agent only writes words, and what that did for testability.
-3. **My agent can't save a wrong number:** a deterministic guardrail around an LLM, and the test that proved it.
-4. **Three bugs that weren't bugs:** a date stored as March, an ID with spaces, a test that reused old inputs. Verify what the system received.
-5. **When the platform moves under you:** Copilot Studio stopped accepting Power Automate flows mid-build, and why documented, tested logic made it a 10-minute fix.
-
 ---
 
 ## Agent evaluation (run 1)
@@ -96,11 +88,6 @@ A running record of what got in the way while building this project, how it was 
 
 ### 13. Credits
 **What happened:** 25,000 trial Copilot Credits came from an admin-started trial in the Microsoft 365 admin centre, then had to be allocated to the environment manually in the Power Platform admin centre.
-
-## More post ideas
-
-6. **My agent said it saved 17 drafts. It saved 15.** Why you score agents on the database, not the chat.
-7. **87.5% isn't a pass:** what one evaluation run taught me about where rules end and the LLM begins.
 
 ### 14. Human review without context isn't a safeguard
 **What happened:** In testing the review app, the reviewer approved a friendly reminder to the hardship client, the same case the agent had missed, because the review screen showed the draft and invoice but not the client's notes.
@@ -143,10 +130,3 @@ A running record of what got in the way while building this project, how it was 
 **Fix:** A yes/no flag on the client, checked by the rule engine, added as new steps without touching tested expressions. Both invoices now escalate every time.
 **Learning:** When an LLM decision has to be right every time, and a rule can make it, use the rule.
 
-## Post ideas (continued)
-
-8. **The AI built my app in two minutes. Making it usable took an hour:** what I removed from a generated review screen, and why.
-9. **Human-in-the-loop is a design problem:** my reviewer approved the one reminder the agent got wrong, because the screen didn't show the client notes.
-10. **Approvals belong where people already work:** why the real version of my review app is a Teams message.
-11. **My agent was right; my screen made it look wrong:** the part-paid invoice that would have turned human review into a source of errors.
-12. **From prompt to rule:** the one decision I took away from the LLM, and why.
