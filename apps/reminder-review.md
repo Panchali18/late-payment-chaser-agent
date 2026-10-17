@@ -63,7 +63,9 @@ The edited-approval and Skip paths after the version 2 changes (Approve was veri
 
 ## Production design: Teams / Outlook approval card
 
-[`teams-approval-card.json`](teams-approval-card.json) is the Adaptive Card a reviewer would receive in Teams or Outlook in a real deployment: client, outstanding amount, due date, client notes (with a note when the same client has other invoices waiting), the editable reminder text, an "I've confirmed this invoice is still unpaid" tick box, and Approve / Skip buttons. It's sample data for one invoice; a Power Automate flow would fill it from the Reminder Log and post it with "Post adaptive card and wait for a response", then write the decision back. Not run live, because the sandbox tenant has no Teams or Exchange licence; previewed in the Adaptive Cards Designer.
+[`teams-approval-card.json`](teams-approval-card.json) is the Adaptive Card a reviewer would receive in Teams or Outlook in a real deployment: client, outstanding amount, due date, client notes (with a note when the same client has other invoices waiting), the editable reminder text, an "I've confirmed this invoice is still unpaid" tick box, and Approve / Skip buttons. It's sample data for one invoice; a Power Automate flow would fill it from the Reminder Log and post it with "Post adaptive card and wait for a response", then write the decision back. Not run live, because the sandbox tenant has no Teams or Exchange licence; previewed in the Adaptive Cards Designer:
+
+![Approval card preview](screenshots/teams-card-preview.png)
 
 ## Found in review: one email per client
 
