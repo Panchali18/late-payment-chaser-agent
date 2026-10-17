@@ -43,6 +43,8 @@ One row holding the business's configuration. Changing this table is how the age
 | Late fee applies | Yes/No | No for clients excluded from the late-fee clause |
 | Notes | Multiline text | **Untrusted data.** May contain injection attempts in tests |
 
+**Added 17/10/2026:** Handle personally (Yes/No, default No). When Yes, GetDueInvoices escalates every invoice for this client, so sensitive clients never get an automatic draft.
+
 ## Invoice (`lpc_Invoice`)
 
 | Column | Type | Notes |

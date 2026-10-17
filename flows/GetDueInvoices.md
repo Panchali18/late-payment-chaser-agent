@@ -20,7 +20,10 @@ No loops: the flow uses `Select` and `Filter array` to transform all invoices in
 | 8 | Staged | Select | Adds the stage from the reminder ladder |
 | 9 | Listed | Filter array | Keeps only invoices that should be listed |
 | 10 | Results | Select | Adds final stage, action and reason |
-| 11 | Output | Compose | Shows the result (replaced by "Respond to the agent" later) |
+| 11 | GetFlaggedClients | Dataverse: List rows | Clients with Handle personally = Yes (filter `lpc_handlepersonally eq true`, select `lpc_clientid`) |
+| 12 | FlaggedIds | Select | List of flagged client IDs: `item()?['lpc_clientid']` |
+| 13 | Final | Select | Any invoice for a flagged client becomes Escalate (see below) |
+| 14 | Output | Compose | `body('Final')`, returned to the agent |
 
 ## Expressions
 
@@ -82,3 +85,19 @@ Run against the 30 test invoices with run date 03/11/2026: **30/30 match the exp
 ## Response to the agent
 
 Respond to the agent, one Text output: `invoices` = `string(outputs('Output'))`.
+
+
+## Handle personally rule (added 17/10/2026)
+
+Added after evaluation run 2, where the agent drafted a reminder for a client whose notes said "handle personally". The decision moved from the LLM to a rule: a yes/no **Handle personally** column on Client, checked here. Added as three new steps after Results, so none of the tested expressions changed.
+
+### 13. Final (Select)
+From: `body('Results')` · Map (text mode):
+```
+setProperty(setProperty(item(), 'action', if(contains(body('FlaggedIds'), item()?['clientId']), 'Escalate', item()?['action'])), 'reason', if(and(contains(body('FlaggedIds'), item()?['clientId']), equals(item()?['action'], 'Draft')), 'Client flagged: owner handles personally', item()?['reason']))
+```
+`setProperty` rather than `addProperty`, because the properties already exist. An invoice already escalated for another reason (for example queried) keeps its original reason.
+
+### Test result (17/10/2026)
+
+Wattle & Pine Cafes flagged. Both its invoices (KL-2026-0125 and KL-2026-0126) returned as Escalate with "Client flagged: owner handles personally". 23 invoices listed (16 Draft, 7 Escalate): KL-2026-0127 dropped out because SendApprovedReminder had recorded its Due reminder, which is the intended behaviour.

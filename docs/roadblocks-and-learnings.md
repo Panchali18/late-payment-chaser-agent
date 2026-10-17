@@ -128,8 +128,25 @@ A running record of what got in the way while building this project, how it was 
 ### 18. Where should approval live?
 **Insight:** A small-business owner won't open a separate app every morning. In production, approvals belong in Teams or Outlook, with the app as the full view behind them.
 
+### 19. A screen figure that contradicted a correct AI draft
+**What happened:** For a part-paid invoice, the review screen showed the invoice total (NZD 3,600) while the draft correctly asked for the outstanding NZD 2,400. A reviewer would have assumed the AI got it wrong, or "corrected" it to the wrong figure.
+**Fix:** Show Outstanding (Amount − Amount paid).
+**Learning:** The review screen has to use the same definitions as the AI. Otherwise human review adds errors instead of catching them.
+
+### 20. Saved isn't published
+**What happened:** A fix to EscalateToOwner had been saved as a draft in an earlier session but never published, so the agent kept running the old version. Opening the flow from Power Apps showed the classic designer, which can't edit agent-flow drafts.
+**Fix:** Opened it in Copilot Studio and published.
+**Learning:** After any change, check what is live, not what is saved.
+
+### 21. A judgement moved from the LLM to a rule
+**What happened:** In both evaluation runs, the LLM read "handle personally" in a client's notes only some of the time.
+**Fix:** A yes/no flag on the client, checked by the rule engine, added as new steps without touching tested expressions. Both invoices now escalate every time.
+**Learning:** When an LLM decision has to be right every time, and a rule can make it, use the rule.
+
 ## Post ideas (continued)
 
 8. **The AI built my app in two minutes. Making it usable took an hour:** what I removed from a generated review screen, and why.
 9. **Human-in-the-loop is a design problem:** my reviewer approved the one reminder the agent got wrong, because the screen didn't show the client notes.
 10. **Approvals belong where people already work:** why the real version of my review app is a Teams message.
+11. **My agent was right; my screen made it look wrong:** the part-paid invoice that would have turned human review into a source of errors.
+12. **From prompt to rule:** the one decision I took away from the LLM, and why.

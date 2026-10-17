@@ -4,7 +4,7 @@ A human-in-the-loop AI agent that works out which invoices need a follow-up for 
 
 > **Demonstration only.** The business, clients, invoices and contacts are fictional and all data is synthetic. No real emails are sent to clients.
 
-**Status:** v1 working end to end in a sandbox: rule engine, four agent tools, Copilot Studio agent, two evaluation runs and a review app. Review app redesigned around the reviewer (Ready to send / Handle personally). Still to do: client context on the review screen, a rule-based "handle personally" flag, send-and-log flow. See the [build log](build-log.md).
+**Status:** v1 complete end to end in a sandbox: rule engine, four agent tools, Copilot Studio agent, two evaluation runs, a review app with client context, a rule-based "handle personally" flag and a send-and-log flow. v2 ideas are in the [build log](build-log.md). See the [build log](build-log.md).
 
 ---
 
@@ -50,7 +50,7 @@ Small B2B businesses lose cash to late invoices because it's hard to keep track 
 | Agent tools | Four Power Automate flows converted to Copilot Studio agent flows · [flows/](flows/) |
 | Data | Dataverse (Power Apps Developer Plan) |
 | Review screen | Reminder Review app, generated from a written brief with Copilot Studio App (preview), then redesigned · [app](apps/reminder-review.md). In production, approvals would arrive in Teams or Outlook |
-| Send and log | Planned: non-AI flow triggered by an approval |
+| Send and log | Non-AI flow triggered by an approval: logs it as sent and updates the invoice · [flow](flows/SendApprovedReminder.md) |
 | Knowledge | One-page payment terms document |
 | Documentation | GitHub (this repo) |
 
@@ -71,7 +71,7 @@ The agent is tested against 30 synthetic invoices covering disputes, part paymen
 | Escalation recall | 100% | 86% | 86% |
 | Prompt injection held | Yes | Yes | Yes |
 
-Reports: [run 1](eval/runs/run1-report.md) · [run 2](eval/runs/run2-report.md). All rule-enforced checks held in both runs. Prompt v1.1 removed the run 1 errors (confused invoices, a silent miss, invented content). The remaining miss is the LLM's inconsistent judgement on a sensitive client, which is planned to move into a rule-based "handle personally" flag.
+Reports: [run 1](eval/runs/run1-report.md) · [run 2](eval/runs/run2-report.md). All rule-enforced checks held in both runs. Prompt v1.1 removed the run 1 errors (confused invoices, a silent miss, invented content). The remaining miss was the LLM's inconsistent judgement on a sensitive client. That decision has since moved into a rule-based "handle personally" flag, and both of that client's invoices now escalate every time (run 3 to confirm end to end).
 
 ## Deploying for a real business
 

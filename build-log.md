@@ -154,8 +154,25 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - When a tool blocks one route (connecting tables), move the data to where the tool can reach it.
 - In production, approvals belong where the user already works (Teams or Outlook), not in a separate app.
 
-**Open items**
-- Confirm the Currency column saves and the formula columns fill in; then show them in the app, with clickable "Handle personally" rows and a "What did you do?" note.
-- Test edited approval and Skip on version 2.
-- Rule-based "Handle personally" flag on Client; EscalateToOwner to set Outcome = Escalated.
-- Send-and-log flow; screen recording; LinkedIn post.
+**Later the same day**
+- **Client context on the review screen:** client name as the title, outstanding amount with currency, due date, contact and a highlighted "Client notes – read before approving" box. Rows grouped by client. "Handle personally" rows open a detail screen with a "What did you do?" note.
+- **Found and fixed:** the screen showed the invoice total (NZD 3,600) while the draft correctly said the outstanding amount (NZD 2,400) for a part-paid invoice. A reviewer would have thought the AI was wrong. The column now shows Outstanding = Amount − Amount paid.
+- **Tested in version 2:** edited approval (Decision = Edited, original draft unchanged), Skip, and Mark as handled.
+- **SendApprovedReminder flow** ([flows/](flows/SendApprovedReminder.md)): when a reminder is approved, Outcome = Sent and the invoice's last reminder stage and date are updated. Tested on KL-2026-0127.
+- **EscalateToOwner** now sets Outcome = Escalated. The fix had been made earlier but never published.
+- **Handle personally rule:** a yes/no flag on Client, checked by GetDueInvoices. Both Wattle & Pine invoices now escalate by rule. KL-2026-0127 dropped out of the next list after being sent: **the full loop works.**
+- **Production design:** a Teams/Outlook approval card ([apps/](apps/reminder-review.md)), previewed but not run live (no Teams licence).
+
+**More problems and fixes**
+- Contact email couldn't be a formula column: email-type columns, like choice columns, aren't available to formulas. Dropped; the reviewer only needs the name.
+- **Saved isn't published:** EscalateToOwner had an unpublished draft from an earlier session, so the agent kept running the old version. Power Apps opened it in the classic designer, which can't edit agent-flow drafts; Copilot Studio's designer could.
+- The run history panel cut the output off after 15 items, so the Wattle entries looked missing. The full result came from the raw output of "Respond to the agent".
+
+**Open items (v2)**
+- One combined reminder per client (found in review: two same-day emails to Bluegum).
+- Warn the reviewer when a note contains instruction-like text (the injection note is shown to the human as-is).
+- Real sending and Teams approval cards (need Microsoft 365 licences).
+- Re-run the evaluation with the Handle personally rule (run 3).
+- Existing escalation rows from runs 1–2 have a blank Outcome; the fix applies to new runs.
+- The send flow stamps the real date while tests use a fixed run date (3 Nov); harmless here, but a real deployment uses one date source.
+- Screen recording and LinkedIn post.
