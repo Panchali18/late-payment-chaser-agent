@@ -60,3 +60,11 @@ The detail screen doesn't show the client's notes, so a reviewer approved a remi
 ## Still to verify
 
 The edited-approval and Skip paths after the version 2 changes (Approve was verified in version 1).
+
+## Production design: Teams / Outlook approval card
+
+[`teams-approval-card.json`](teams-approval-card.json) is the Adaptive Card a reviewer would receive in Teams or Outlook in a real deployment: client, outstanding amount, due date, client notes (with a note when the same client has other invoices waiting), the editable reminder text, an "I've confirmed this invoice is still unpaid" tick box, and Approve / Skip buttons. It's sample data for one invoice; a Power Automate flow would fill it from the Reminder Log and post it with "Post adaptive card and wait for a response", then write the decision back. Not run live, because the sandbox tenant has no Teams or Exchange licence; previewed in the Adaptive Cards Designer.
+
+## Found in review: one email per client
+
+Bluegum Events Co has two drafts in the queue. Approving both would send the same contact two chasing emails on the same day. The app now groups invoices by client, but the real fix is in the agent: **v2 should draft one combined reminder per client**, which changes the rules (group by client), the drafting (several invoices, possibly at different stages) and the fact check (validate every invoice in the email).

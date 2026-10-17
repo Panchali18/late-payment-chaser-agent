@@ -1,0 +1,95 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.4",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Payment reminder ready for review",
+      "size": "Small",
+      "weight": "Bolder",
+      "color": "Accent"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Bluegum Events Co",
+      "size": "Large",
+      "weight": "Bolder",
+      "spacing": "Small"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Invoice", "value": "KL-2026-0130" },
+        { "title": "Outstanding", "value": "AUD 10,450.00" },
+        { "title": "Due date", "value": "12 Oct 2026 (22 days overdue)" },
+        { "title": "Contact", "value": "Priya Raman" }
+      ]
+    },
+    {
+      "type": "Container",
+      "style": "warning",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Client notes – read before approving",
+          "weight": "Bolder",
+          "size": "Small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Client since 2019. Large annual conference account.",
+          "wrap": true,
+          "spacing": "Small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "This client has 1 other invoice awaiting review today.",
+          "wrap": true,
+          "size": "Small",
+          "isSubtle": true,
+          "spacing": "Small"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Reminder text",
+      "weight": "Bolder",
+      "spacing": "Medium"
+    },
+    {
+      "type": "Input.Text",
+      "id": "reminderText",
+      "isMultiline": true,
+      "value": "Subject: Overdue payment – Invoice KL-2026-0130\n\nHi Priya,\n\nOur records show that Invoice KL-2026-0130 for AUD 10,450.00, due on 12 October 2026, remains outstanding. This payment is now 22 days overdue under our terms. Please arrange payment or confirm a payment date as soon as possible.\n\nUnder our payment terms, a late payment fee of 2% of the overdue amount may apply.\n\nKind regards,\nJordan Hale\nAccounts Manager, Kestrel Lane Print & Signage"
+    },
+    {
+      "type": "Input.Toggle",
+      "id": "confirmedUnpaid",
+      "title": "I've confirmed this invoice is still unpaid",
+      "value": "false",
+      "valueOn": "true",
+      "valueOff": "false"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Approve",
+      "style": "positive",
+      "data": { "action": "approve", "reminderLogId": "<reminder-log-id>" }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Skip",
+      "data": { "action": "skip", "reminderLogId": "<reminder-log-id>" }
+    },
+    {
+      "type": "Action.OpenUrl",
+      "title": "Open in Reminder Review",
+      "url": "https://example.com/reminder-review"
+    }
+  ]
+}
