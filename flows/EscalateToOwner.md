@@ -47,7 +47,7 @@ addProperty(addProperty(addProperty(json('{}'), 'escalated', true), 'reminderId'
 
 ## v1 note
 
-The owner sees escalations in the review screen (Decision = Pending, Outcome = Escalated). An email notification is added with the send-and-log flow.
+The owner sees escalations in the review app's Handle personally tab (Decision = Pending, Outcome = Escalated). Outcome = Escalated was only published on 17/10/2026, so escalations from evaluation runs 1 and 2 have a blank Outcome. An email notification is added with the send-and-log flow.
 
 ## Test result (14/10/2026)
 

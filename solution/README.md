@@ -22,3 +22,7 @@
 2. When asked, choose a Dataverse connection for the connection reference.
 3. Import the CSVs from [data/](../data/) (clients first, then invoices) and create one Business Setting row.
 4. Open the agent in Copilot Studio. The environment needs Copilot Credits allocated before you can test (see [agent setup](../docs/agent-setup.md)).
+
+## Out of date
+
+This export was taken on 17/10/2026, before these later changes the same day: the Reminder Log formula columns, the Handle personally column on Client, the Handle personally rule in GetDueInvoices, the published Outcome fix in EscalateToOwner, and the SendApprovedReminder flow (add it to the solution before the next export). Re-export to bring this file up to date.

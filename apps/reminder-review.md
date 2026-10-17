@@ -55,11 +55,14 @@ Do not send any email from the app.
 
 The detail screen doesn't show the client's notes, so a reviewer approved a reminder to the hardship client that the agent should have escalated.
 
-**Fix in progress:** the app builder couldn't add the Invoice and Client tables in its session ("live-data connectivity isn't enabled", even when given the exact schema). Instead, formula columns on the Reminder Log now bring in client name, amount, due date, contact and client notes (see [data model](../docs/data-model.md)), so the app can show them from the one table it already uses. Next: show them on both tabs and detail screens, and make "Handle personally" rows open a detail screen with a "What did you do?" note.
+**Fixed:** the app builder couldn't add the Invoice and Client tables in its session ("live-data connectivity isn't enabled", even when given the exact schema). Instead, formula columns on the Reminder Log bring in client name, outstanding amount, currency, due date, contact name and client notes (see [data model](../docs/data-model.md)), so the app shows them from the one table it already uses. Both tabs group invoices by client. The detail screen shows the client name as its title, the facts and a highlighted "Client notes – read before approving" box. "Handle personally" rows open a detail screen with a "What did you do?" note. The amount shown is the outstanding balance, not the invoice total, so it matches the draft for part-paid invoices.
 
-## Still to verify
+## Tested (17/10/2026)
 
-The edited-approval and Skip paths after the version 2 changes (Approve was verified in version 1).
+- Edited approval: Decision = Edited, the edited text saved, the original draft unchanged.
+- Skip: removed from Ready to send.
+- Mark as handled: removed from Handle personally.
+- Approve → the SendApprovedReminder flow logged Outcome = Sent and updated the invoice.
 
 ## Production design: Teams / Outlook approval card
 
