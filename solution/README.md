@@ -25,4 +25,4 @@
 
 ## Out of date
 
-This export was taken on 17/10/2026, before these later changes the same day: the Reminder Log formula columns, the Handle personally column on Client, the Handle personally rule in GetDueInvoices, the published Outcome fix in EscalateToOwner, and the SendApprovedReminder flow (add it to the solution before the next export). Re-export to bring this file up to date.
+This export was taken on 17/10/2026, before these later changes the same day: the Reminder Log formula columns, the Handle personally column on Client, the Handle personally rule in GetDueInvoices, the published Outcome fix in EscalateToOwner, and the SendApprovedReminder flow. Re-export to bring this file up to date.
