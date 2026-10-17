@@ -4,7 +4,7 @@ A human-in-the-loop AI agent that works out which invoices need a follow-up for 
 
 > **Demonstration only.** The business, clients, invoices and contacts are fictional and all data is synthetic. No real emails are sent to clients.
 
-**Status:** v1 complete end to end in a sandbox: rule engine, four agent tools, Copilot Studio agent, two evaluation runs, a review app with client context, a rule-based "handle personally" flag and a send-and-log flow. v2 ideas are in the [build log](build-log.md). See the [build log](build-log.md).
+**Status:** v1 complete end to end in a sandbox: rule engine, four agent tools, Copilot Studio agent, two evaluation runs, a review app with client context, a rule-based "handle personally" flag and a send-and-log flow. v2 ideas are in the [build log](build-log.md).
 
 ---
 
