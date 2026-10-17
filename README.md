@@ -4,7 +4,7 @@ A human-in-the-loop AI agent that works out which invoices need a follow-up for 
 
 > **Demonstration only.** The business, clients, invoices and contacts are fictional and all data is synthetic. No real emails are sent to clients.
 
-**Status:** v1 working end to end in a sandbox: rule engine, four agent tools, Copilot Studio agent, two evaluation runs and a review app. Still to do: send-and-log flow, client notes on the review screen, a rule-based "handle personally" flag. See the [build log](build-log.md).
+**Status:** v1 working end to end in a sandbox: rule engine, four agent tools, Copilot Studio agent, two evaluation runs and a review app. Review app redesigned around the reviewer (Ready to send / Handle personally). Still to do: client context on the review screen, a rule-based "handle personally" flag, send-and-log flow. See the [build log](build-log.md).
 
 ---
 
@@ -49,7 +49,7 @@ Small B2B businesses lose cash to late invoices because it's hard to keep track 
 | Agent | Microsoft Copilot Studio (generative orchestration, GPT-5 Chat) · [setup](docs/agent-setup.md) |
 | Agent tools | Four Power Automate flows converted to Copilot Studio agent flows · [flows/](flows/) |
 | Data | Dataverse (Power Apps Developer Plan) |
-| Review screen | Reminder Review app, generated from a written brief with Copilot Studio App (preview) · [app](apps/reminder-review.md) |
+| Review screen | Reminder Review app, generated from a written brief with Copilot Studio App (preview), then redesigned · [app](apps/reminder-review.md). In production, approvals would arrive in Teams or Outlook |
 | Send and log | Planned: non-AI flow triggered by an approval |
 | Knowledge | One-page payment terms document |
 | Documentation | GitHub (this repo) |

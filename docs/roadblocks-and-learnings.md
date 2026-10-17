@@ -105,3 +105,31 @@ A running record of what got in the way while building this project, how it was 
 ### 14. Human review without context isn't a safeguard
 **What happened:** In testing the review app, the reviewer approved a friendly reminder to the hardship client, the same case the agent had missed, because the review screen showed the draft and invoice but not the client's notes.
 **Learning:** Human-in-the-loop only catches what the human can see. Design the review screen around the decisions the reviewer has to make, not just the AI's output.
+
+---
+
+## Review app and data (17/10)
+
+### 15. The generated app showed the system, not the job
+**What happened:** The app generated from a written brief worked, but showed a process diagram, an internal reference ("KL-2026-0123 | Gentle | 14/10/2026"), stage names, a prompt version and a "Validation passed" column that was always Yes for drafts and No for escalations (which looked like an error). Drafts and escalations shared one table, so half the rows had a blank reason.
+**Fix:** A design pass. Two tabs (Ready to send / Handle personally), internals hidden, one editable text box, one Approve button.
+**Learning:** AI app generators build from the data model. The product owner's job is to rebuild the screen around the decision the user has to make.
+
+### 16. The app builder couldn't add tables
+**What happened:** Copilot Studio's App (preview) refused to add the Invoice and Client tables ("live-data connectivity isn't enabled in this session"), even when given the exact schema.
+**Fix:** Added formula columns to the Reminder Log that pull client and invoice details through the existing lookup, so the app reads everything from one table.
+**Learning:** When a tool blocks a route, move the data to where the tool can reach it.
+
+### 17. Hidden spaces and unsupported types in formula columns
+**What happened:** `'Invoice'.'Client'.'Client name'` failed because the real display name is `'Client '`, with a trailing space. A column named "Amount" silently switched itself to Decimal. Currency, a choice column, couldn't be read at all.
+**Fix:** Built formulas by picking from the suggestion list, checked each data type before saving, and derived currency from the client's country.
+**Learning:** Small schema decisions (a trailing space, choice vs text) limit what you can do later. Store codes like currency as plain text when other features will need to read them.
+
+### 18. Where should approval live?
+**Insight:** A small-business owner won't open a separate app every morning. In production, approvals belong in Teams or Outlook, with the app as the full view behind them.
+
+## Post ideas (continued)
+
+8. **The AI built my app in two minutes. Making it usable took an hour:** what I removed from a generated review screen, and why.
+9. **Human-in-the-loop is a design problem:** my reviewer approved the one reminder the agent got wrong, because the screen didn't show the client notes.
+10. **Approvals belong where people already work:** why the real version of my review app is a Teams message.

@@ -74,3 +74,19 @@ One row holding the business's configuration. Changing this table is how the age
 | Validation passed | Yes/No | Result of the fact check on save; default No |
 | Prompt version | Text | e.g. v1.0, matches `prompts/` |
 | Created on | Date and time | System column |
+
+**Formula columns (added for the review app).** Read-only, calculated by Dataverse through the Invoice lookup, so existing rows fill in with no flow changes:
+
+| Column | Formula | Notes |
+|---|---|---|
+| Client name | `Invoice.'Client '.'Client name'` | |
+| Amount | `Invoice.'Amount '` | |
+| Due date | `Invoice.'Due date'` | |
+| Contact name | `Invoice.'Client '.<billing contact name>` | |
+| Contact email | `Invoice.'Client '.<billing contact email>` | |
+| Client notes | `Invoice.'Client '.Notes` | Lets the reviewer see sensitive-client notes |
+| Currency | `Switch(Invoice.'Client '.Country, "Australia","AUD", "New Zealand","NZD", "United Kingdom","GBP", "United States","USD", "")` | Demo shortcut, see below |
+
+Some display names carry a trailing space (`'Client '`, `'Amount '`), so formulas are built by picking from the editor's suggestion list rather than typing.
+
+**Currency shortcut:** formula columns can't read choice columns (not through a lookup, and `Text()` on a same-table choice also failed), so currency is derived from the client's country. This holds for the demo data, where every client is billed in its home currency. A real business billing one client in several currencies would store the currency code as plain text on the invoice.

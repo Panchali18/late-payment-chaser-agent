@@ -132,3 +132,30 @@ Each step of the build and what I learned. Newest entries at the bottom.
 - EscalateToOwner doesn't set Outcome = Escalated.
 - Verify the Skip and Approve-with-edits paths save correctly.
 - Send-and-log flow (approved, then Sent); export the solution to `solution/`; screen recording; LinkedIn post.
+
+---
+
+## 17/10/2026 — Solution export and review app redesign
+
+**Done**
+- Exported the unmanaged solution to [`solution/`](solution/): four tables, four agent flows, the agent with its tools and knowledge. Checked for credentials before committing. The generated review app doesn't export with the solution.
+- Checked credit usage: the admin centre still reports 0 of 25,000 Copilot Credits consumed after two evaluation runs (recorded as "not yet reported", not "free").
+- Redesigned the Reminder Review app around the reviewer ([app](apps/reminder-review.md)): removed the process banner, internal reference, stage, prompt version and "Validation passed"; split the queue into **Ready to send** and **Handle personally**; one editable text box with the original draft kept in the data; one Approve button that records Approved or Edited.
+- Added formula columns to the Reminder Log (client name, amount, due date, contact name and email, client notes) so the app can show client context without new data connections ([data model](docs/data-model.md)).
+
+**Problems and fixes**
+- **App builder couldn't connect new tables:** "live-data connectivity isn't enabled in this session", even after being given the exact schema. Workaround: bring the data into the table the app already uses, using Dataverse formula columns.
+- **Formula failed on the first try:** some column display names have a trailing space (`'Client '`, `'Amount '`). Fixed by building formulas from the editor's suggestion list instead of typing.
+- **A new column silently switched to Decimal** when named "Amount". Caught before saving; each column's data type now gets checked before Save.
+- **Currency wouldn't come through:** formula columns can't read choice columns, either via a lookup or with `Text()` on the same table. Workaround: derive currency from the client's country, which holds for the demo data (documented as a limitation).
+
+**Learned**
+- A generated app is a first draft built around the data model. It needed a design pass to be usable: hide the mechanics, separate different jobs, show what the decision needs.
+- When a tool blocks one route (connecting tables), move the data to where the tool can reach it.
+- In production, approvals belong where the user already works (Teams or Outlook), not in a separate app.
+
+**Open items**
+- Confirm the Currency column saves and the formula columns fill in; then show them in the app, with clickable "Handle personally" rows and a "What did you do?" note.
+- Test edited approval and Skip on version 2.
+- Rule-based "Handle personally" flag on Client; EscalateToOwner to set Outcome = Escalated.
+- Send-and-log flow; screen recording; LinkedIn post.

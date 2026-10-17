@@ -4,12 +4,32 @@ The human-in-the-loop step: nothing the agent drafts goes anywhere until a perso
 
 **Built with:** Copilot Studio App (preview), generated from the written brief below. It uses the existing Reminder Log table; no new tables, and no email sending.
 
-## What it does
+## What it does (version 2)
 
-- **Review queue:** Reminder Log rows with Decision = Pending, newest first. Escalations are marked "Escalated – owner to handle" with the reason.
-- **Review detail:** reference, invoice, stage, prompt version, the agent's draft (read-only) and an editable copy.
-- **Actions:** Approve, Approve with edits, Skip. Both approvals first ask "Have you confirmed this invoice is still unpaid?" (Yes/Cancel).
-- **Tested:** loads live Reminder Log data; Approve saves Decision = Approved and removes the item from the queue.
+- **Payment reminders** screen with two tabs and counts:
+  - **Ready to send:** drafts written by the agent. Opens a detail screen.
+  - **Handle personally:** cases where the agent deliberately wrote nothing (queried, promised date missed, sensitive client, final notice already sent), with the reason and a "Mark as handled" button.
+- **Detail screen:** one editable "Reminder text" box, starting from the agent's draft. "See original draft" appears only once the text has been changed.
+- **One Approve button:** saves the text to Edited text and records Decision = Edited if the text changed, otherwise Approved. Skip stays. Approve asks "Have you confirmed this invoice is still unpaid?" first.
+- The agent's original draft is never overwritten, so edits can be measured.
+
+## Version 1 → version 2: design review
+
+Version 1 was generated straight from the brief below and worked, but it was built around the system rather than the reviewer:
+
+| Version 1 | Problem | Version 2 |
+|---|---|---|
+| Three-step process banner ("Review queue → Invoice check → Decision") | The user doesn't need to see how it works | Removed |
+| "KL-2026-0123 \| Gentle \| 14/10/2026" reference as the title | Internal key, unreadable | Invoice number (client name next) |
+| Stage and prompt version on screen | Internal logic | Hidden; still stored |
+| "Validation passed" column | Drafts that fail are blocked, so drafts always showed Yes; escalations showed No, which looked like an error | Removed |
+| Drafts and escalations in one table | Half the rows had a blank escalation reason | Two tabs: Ready to send / Handle personally |
+| Read-only draft and editable copy side by side | Same text twice | One editable box; original kept in the data |
+| Approve and Approve with edits | Two buttons for one decision | One Approve; the app works out whether it was edited |
+
+## Where this would live in a real deployment
+
+A small-business owner wouldn't open an app every morning. In production, a daily Teams or Outlook message ("4 reminders ready, 6 to handle personally") with approve buttons would be the main way in, and this app would be the full view behind it. The sandbox tenant has no Teams or Exchange licence, so the demo uses the app.
 
 ## Brief used to generate it
 
@@ -33,8 +53,10 @@ Do not send any email from the app.
 
 ## Gap found in testing
 
-The detail screen doesn't show the client's notes, so a reviewer approved a reminder to the hardship client that the agent should have escalated. **Next version:** show client notes and a "sensitive client" warning on the detail screen.
+The detail screen doesn't show the client's notes, so a reviewer approved a reminder to the hardship client that the agent should have escalated.
+
+**Fix in progress:** the app builder couldn't add the Invoice and Client tables in its session ("live-data connectivity isn't enabled", even when given the exact schema). Instead, formula columns on the Reminder Log now bring in client name, amount, due date, contact and client notes (see [data model](../docs/data-model.md)), so the app can show them from the one table it already uses. Next: show them on both tabs and detail screens, and make "Handle personally" rows open a detail screen with a "What did you do?" note.
 
 ## Still to verify
 
-The Skip and Approve-with-edits paths (Approve is verified).
+The edited-approval and Skip paths after the version 2 changes (Approve was verified in version 1).
