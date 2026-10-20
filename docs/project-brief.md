@@ -1,5 +1,7 @@
 # Project Brief: Late-Payment Chaser Agent (v1)
 
+> This is the original plan, written before the build. What was actually built is in the [README](../README.md) and the [build log](../build-log.md). The main differences are listed under [What changed during the build](#what-changed-during-the-build).
+
 ## Problem
 Small B2B businesses lose cash to late invoices because it's hard to keep track of which invoices need a follow-up and which don't: what's coming due, what's overdue, what has been promised or queried, and who was already reminded. Accounting tools send fixed-schedule reminders that ignore that context: queried invoices, promised payment dates, long-standing clients, a client who has already paid but isn't marked as paid.
 
@@ -59,12 +61,20 @@ Agents and tool calling, orchestration, data modelling, guardrails and human-in-
 ## Out of scope for v1
 Real email sending to clients, payment or bank integration, interest calculation, B2C chasing, scheduled autonomous runs, multi-agent (v2 idea: a second agent that watches replies and payments to pause chasing), multilingual drafts (v2).
 
-## Check on day 1 (not yet verified)
-- Whether Copilot Studio trial tools/flows consume paid capacity
-- Whether Dataverse works as a tool source in the dev environment
-- Whether the dev tenant can send email (fallback: Gmail connector to a test inbox, or "logged as sent")
+## Check on day 1 (answered during the build)
+- **Whether Copilot Studio trial tools/flows consume paid capacity:** testing needs Copilot Credits allocated to the environment. An admin-started trial gave 25,000; pay-as-you-go stayed off. See [agent setup](agent-setup.md).
+- **Whether Dataverse works as a tool source in the dev environment:** yes, through agent flows. Power Automate cloud flows had to be converted to Copilot Studio agent flows.
+- **Whether the dev tenant can send email:** no Exchange licence, so the send flow logs reminders as sent.
 
 ## Deliverables
-- Working demo plus a 10–20 second screen recording
+- Working demo plus a short screen recording
 - GitHub repo with README (problem, design, rules-vs-LLM split, eval results, limitations, "demonstration only" note)
 - Build log of each step and what I learned
+
+## What changed during the build
+
+- **Review screen:** generated with Copilot Studio App (preview) from a written brief, then redesigned around the reviewer: Ready to send and Handle personally tabs, client notes and outstanding amount beside each draft, one Approve button.
+- **Escalating sensitive clients:** the LLM's judgement on client notes wasn't consistent in evaluation, so a rule-based "Handle personally" flag on the client was added.
+- **Sending:** reminders are logged as sent, not emailed (no Exchange licence in the sandbox). Escalations aren't emailed to the owner either; they appear in the review app.
+- **Evaluation:** tone was scored in run 1 only; tokens per draft weren't measurable from the admin centre, which still reported 0 credits consumed.
+- **GetDueInvoices** returns the client ID, not the billing contact; the agent gets the contact from GetClientContext.

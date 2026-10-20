@@ -36,7 +36,9 @@
 1. **Product fix (recommended):** add a "Handle personally" yes/no column on Client. Staff set it; the rule engine escalates every invoice for that client. The LLM can still *suggest* setting the flag when it reads a sensitive note, but no longer decides alone.
 2. **Prompt fix:** "If you escalate one invoice for a client because of their notes, escalate every invoice for that client." Cheaper, but still LLM-dependent.
 
+**Update (17/10/2026):** option 1 was built. GetDueInvoices now returns both Wattle & Pine invoices as Escalate. The full agent run with this rule (run 3) is still to do.
+
 ## Other findings
 
-- **Flow bug still open:** escalation records have no Outcome value; EscalateToOwner's Outcome field needs setting to Escalated.
+- **Flow bug:** escalation records have no Outcome value. Fixed and published on 17/10/2026; rows from this run stay blank.
 - **Length:** drafts are 45–66 words, below the 60–120 instruction in some cases. Acceptable for reminders.

@@ -6,10 +6,10 @@ The human-in-the-loop step: nothing the agent drafts goes anywhere until a perso
 
 ## What it does (version 2)
 
-- **Payment reminders** screen with two tabs and counts:
-  - **Ready to send:** drafts written by the agent. Opens a detail screen.
-  - **Handle personally:** cases where the agent deliberately wrote nothing (queried, promised date missed, sensitive client, final notice already sent), with the reason and a "Mark as handled" button.
-- **Detail screen:** one editable "Reminder text" box, starting from the agent's draft. "See original draft" appears only once the text has been changed.
+- **Payment reminders** screen with two tabs and counts, with invoices grouped by client:
+  - **Ready to send:** drafts written by the agent, with client, invoice number, outstanding amount and date drafted. Opens a detail screen.
+  - **Handle personally:** cases where the agent deliberately wrote nothing (queried, promised date missed, sensitive client, final notice already sent), with the reason. Each opens a detail screen with a "What did you do?" note and a "Mark as handled" button.
+- **Detail screen:** the client name as the title; invoice number, outstanding amount, due date and contact; a highlighted "Client notes – read before approving" box; and one editable "Reminder text" box, starting from the agent's draft. "See original draft" appears only once the text has been changed.
 - **One Approve button:** saves the text to Edited text and records Decision = Edited if the text changed, otherwise Approved. Skip stays. Approve asks "Have you confirmed this invoice is still unpaid?" first.
 - The agent's original draft is never overwritten, so edits can be measured.
 
@@ -20,7 +20,7 @@ Version 1 was generated straight from the brief below and worked, but it was bui
 | Version 1 | Problem | Version 2 |
 |---|---|---|
 | Three-step process banner ("Review queue → Invoice check → Decision") | The user doesn't need to see how it works | Removed |
-| "KL-2026-0123 \| Gentle \| 14/10/2026" reference as the title | Internal key, unreadable | Invoice number (client name next) |
+| "KL-2026-0123 \| Gentle \| 14/10/2026" reference as the title | Internal key, unreadable | Client name as the title, invoice facts underneath |
 | Stage and prompt version on screen | Internal logic | Hidden; still stored |
 | "Validation passed" column | Drafts that fail are blocked, so drafts always showed Yes; escalations showed No, which looked like an error | Removed |
 | Drafts and escalations in one table | Half the rows had a blank escalation reason | Two tabs: Ready to send / Handle personally |
@@ -73,3 +73,10 @@ The detail screen doesn't show the client's notes, so a reviewer approved a remi
 ## Found in review: one email per client
 
 Bluegum Events Co has two drafts in the queue. Approving both would send the same contact two chasing emails on the same day. The app now groups invoices by client, but the real fix is in the agent: **v2 should draft one combined reminder per client**, which changes the rules (group by client), the drafting (several invoices, possibly at different stages) and the fact check (validate every invoice in the email).
+
+## Limitations
+
+- The app runs in a personal sandbox tenant, so only accounts in that tenant can open it.
+- When the published app was opened (17/10/2026), it showed "You do not have enough credits to use this app". Apps built with Copilot Studio App (preview) seem to need credits of their own; the editor preview worked throughout.
+- It doesn't export with the solution yet.
+- Approve always saves the box to Edited text, even when it's unchanged; Decision still records Approved or Edited correctly.

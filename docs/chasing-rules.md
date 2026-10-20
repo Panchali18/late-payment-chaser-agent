@@ -42,6 +42,7 @@ The flow flags these as **Escalate**, with the reason. The agent must not draft 
 | Payment status is **Queried** | Invoice queried by client |
 | Promised pay date has **passed** without payment | Promised pay date missed |
 | Outstanding balance is **zero or less** but status is Open | Likely paid but not marked as paid |
+| Client is flagged **Handle personally** (added after evaluation run 2) | Client flagged: owner handles personally |
 
 ## Agent-based escalation
 

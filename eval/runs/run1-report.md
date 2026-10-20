@@ -21,7 +21,7 @@ The agent's own chat summary was **not** used for scoring. Every result below co
 | Summary accuracy | 100% | **92%** (22/24 rows) | Summary claimed a saved draft for KL-2026-0130 (none exists) and labelled KL-2026-0123 as Wattle & Pine |
 | Tone (1–5) | ≥ 4 | **≈ 4** | Clear, polite, stage-appropriate. Formal reminders for Thistle & Fern and Harbourview are softer than "firm" |
 | Length 80–150 words | — | **Mostly under** | Most drafts are 50–75 words. Short is fine for reminders, but the instruction wasn't followed |
-| Cost | Report | Pending | Read from the Power Platform admin centre (Copilot Credits consumed) |
+| Cost | Report | Not measurable | The Power Platform admin centre still reported 0 Copilot Credits consumed after both runs (checked 17/10/2026) |
 
 ## The three tool-path errors
 

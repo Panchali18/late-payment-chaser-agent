@@ -24,7 +24,7 @@ One row holding the business's configuration. Changing this table is how the age
 | Ladder: final offset | Whole number | 30 | |
 | Sender name | Text | Jordan Hale (fictional) | |
 | Sender role | Text | Accounts Manager | Optional |
-| Owner email | Email | owner@kestrellane.example | Escalations go here; switched to a test inbox for sending |
+| Owner email | Email | owner@kestrellane.example | Not used in v1: escalations appear in the review app, not by email |
 | Signature | Multiline text | | |
 | Tone | Choice | Friendly / Neutral / Formal | Default tone for drafts |
 | Run date override | Date only | 03/11/2026 | If set, treated as today so test runs are repeatable; blank in normal use |
@@ -36,14 +36,13 @@ One row holding the business's configuration. Changing this table is how the age
 | Client name | Text | Primary name column |
 | Billing contact name | Text | |
 | Billing contact email | Email | Test addresses only |
-| Country | Text | AU, NZ, UK or US |
+| Country | Text | Australia, New Zealand, United Kingdom or United States (the Currency formula column relies on these exact values) |
 | Currency | Choice | AUD, NZD, GBP, USD, EUR, INR |
 | Relationship | Choice | New, Regular, Long-standing |
 | Payment terms override (days) | Whole number | Blank means use the default |
 | Late fee applies | Yes/No | No for clients excluded from the late-fee clause |
 | Notes | Multiline text | **Untrusted data.** May contain injection attempts in tests |
-
-**Added 17/10/2026:** Handle personally (Yes/No, default No). When Yes, GetDueInvoices escalates every invoice for this client, so sensitive clients never get an automatic draft.
+| Handle personally | Yes/No (default No) | Added after evaluation run 2. When Yes, GetDueInvoices escalates every invoice for this client, so sensitive clients never get an automatic draft |
 
 ## Invoice (`lpc_Invoice`)
 
@@ -69,8 +68,8 @@ One row holding the business's configuration. Changing this table is how the age
 | Invoice | Lookup → Invoice | |
 | Stage | Choice | Same options, order and values as Last reminder stage |
 | Draft text | Multiline text (4,000 chars) | As written by the agent; blank for escalations |
-| Edited text | Multiline text (4,000 chars) | As approved by the human, if changed |
-| Decision | Choice | Pending (default), Approved, Edited, Skipped |
+| Edited text | Multiline text (4,000 chars) | The text the reviewer approved (the app saves it on every approval), or the owner's "What did you do?" note for escalations |
+| Decision | Choice | Pending (default), Approved, Edited, Skipped. "Mark as handled" on an escalation sets Skipped |
 | Outcome | Choice | Sent, Skipped, Escalated; blank until review is complete |
 | Escalation reason | Text | Required when Outcome = Escalated |
 | Validation passed | Yes/No | Result of the fact check on save; default No |
@@ -82,13 +81,14 @@ One row holding the business's configuration. Changing this table is how the age
 | Column | Formula | Notes |
 |---|---|---|
 | Client name | `Invoice.'Client '.'Client name'` | |
-| Amount | `Invoice.'Amount '` | |
+| Outstanding | `Invoice.'Amount ' - Invoice.'Amount paid'` | First built as the invoice total, which contradicted correct drafts for part-paid invoices; changed to the outstanding balance |
 | Due date | `Invoice.'Due date'` | |
-| Contact name | `Invoice.'Client '.<billing contact name>` | |
-| Contact email | `Invoice.'Client '.<billing contact email>` | |
+| Contact name | `Invoice.'Client '.'Billing contact name'` | |
 | Client notes | `Invoice.'Client '.Notes` | Lets the reviewer see sensitive-client notes |
 | Currency | `Switch(Invoice.'Client '.Country, "Australia","AUD", "New Zealand","NZD", "United Kingdom","GBP", "United States","USD", "")` | Demo shortcut, see below |
 
 Some display names carry a trailing space (`'Client '`, `'Amount '`), so formulas are built by picking from the editor's suggestion list rather than typing.
+
+**No contact email:** the billing email is an Email-type column, which formula columns couldn't read. The reviewer only needs the name.
 
 **Currency shortcut:** formula columns can't read choice columns (not through a lookup, and `Text()` on a same-table choice also failed), so currency is derived from the client's country. This holds for the demo data, where every client is billed in its home currency. A real business billing one client in several currencies would store the currency code as plain text on the invoice.

@@ -14,12 +14,12 @@ Small B2B businesses lose cash to late invoices because it's hard to keep track 
 
 ## What the agent does
 
-1. The owner asks the agent: *"What needs chasing?"*
-2. The agent gets a rule-based list of invoices that are due within 7 days or overdue, each with a suggested reminder stage and a reason.
-3. For each invoice, the agent checks the client's context and either **drafts a reminder** or **escalates to the owner** (dispute, promised date, sensitive note, or past the final notice).
-4. The owner reviews every draft in a simple app: **Approve / Edit / Skip**, after confirming the payment status.
-5. A separate, non-AI flow sends approved drafts to a test inbox and logs them.
-6. Paid or promised invoices drop out on the next run.
+1. The office manager asks the agent: *"What needs chasing?"*
+2. The agent gets a rule-based list of invoices that are due within 7 days or overdue, each with a reminder stage, an action (draft or escalate) and a reason.
+3. For each invoice, the agent either **drafts a reminder** or **escalates to the owner**. The rules escalate known cases (queried, promised date missed, final notice already sent, zero balance still open, client flagged "handle personally"); the agent can also escalate when a client's notes describe a sensitive situation.
+4. The office manager reviews each draft in a review app that shows the client's notes and the outstanding amount, edits the text if needed, and clicks **Approve** or **Skip** after confirming the invoice is still unpaid. Escalations appear in a separate **Handle personally** list.
+5. A separate, non-AI flow logs each approved reminder as sent and updates the invoice. The sandbox can't send email, so nothing actually goes out.
+6. Paid, promised or already-reminded invoices drop out of the next run.
 
 ## Fictional business
 
@@ -30,13 +30,15 @@ Small B2B businesses lose cash to late invoices because it's hard to keep track 
 | Decided by rules (deterministic) | Decided by the LLM |
 |---|---|
 | Which invoices are chased, and when | The wording of each reminder |
-| Reminder stage (from the business's own ladder) | Whether to draft or escalate, based on client context |
+| Reminder stage (from the business's own ladder) | Whether a client's notes call for escalation instead of a draft |
+| Known escalations: queried, promised date missed, final notice sent, zero balance, client flagged "handle personally" | |
 | Facts in the draft: invoice number, amount, currency, due date | Tone within the limits set by the business |
 | Whether a late fee can be mentioned (from the business's own terms) | |
 
 **Guardrails**
 
-- **Least privilege:** the agent has no send tool. Only a human-approved flow can send.
+- **Least privilege:** the agent has no send tool. Only a non-AI flow, triggered by a human approval, can mark a reminder as sent.
+- **Human review with context:** the reviewer sees the client's notes and the outstanding amount next to every draft.
 - **Fact validation:** every saved draft is checked against the invoice record. Any mismatch blocks the draft.
 - **No legal claims:** late fees are mentioned only if the business's own payment terms include them. The agent never cites law or calculates statutory interest.
 - **Untrusted data:** client notes are treated as data, not instructions, to resist prompt injection.
@@ -94,9 +96,9 @@ docs/          project brief, business profile, user stories, data model
 data/          synthetic CSVs to import into Dataverse
 knowledge/     payment terms document used by the agent
 prompts/       agent instructions and tool descriptions, versioned
-apps/          the review app and the brief used to generate it
-flows/         what each Power Automate flow does, with screenshots
-solution/      exported Power Platform solution
+apps/          the review app, the brief used to generate it, and the Teams/Outlook approval card design
+flows/         what each Power Automate flow does, with its expressions
+solution/      exported Power Platform solution (taken before the final changes; see its README)
 eval/          test set and results
 build-log.md   each build step and what I learned
 ```
@@ -107,6 +109,14 @@ build-log.md   each build step and what I learned
 - No interest calculation and no B2C chasing.
 - Runs on request only, not on a schedule.
 - English drafts only.
+- The agent and review app run in a personal sandbox tenant, so they can't be opened by others; the [build log](build-log.md) and [app doc](apps/reminder-review.md) show how they work.
+
+## What's next (v2)
+
+- One combined reminder per client, instead of one per invoice.
+- A warning on the review screen when a client note contains instruction-like text.
+- Approvals in Teams or Outlook using the [approval card](apps/teams-approval-card.json), and real sending from a shared mailbox.
+- Evaluation run 3 with the "handle personally" rule in place.
 
 ## Author
 

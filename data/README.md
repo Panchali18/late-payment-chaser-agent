@@ -9,4 +9,6 @@ Synthetic data for Kestrel Lane Print & Signage. All names, emails and amounts a
 
 Dates are ISO format (YYYY-MM-DD) and built around the run date **03/11/2026** (Business Setting → Run date override). Expected results per invoice are in [`eval/test-set.csv`](../eval/test-set.csv); the rules behind them are in [`docs/chasing-rules.md`](../docs/chasing-rules.md).
 
+**After importing:** set **Handle personally** = Yes for Wattle & Pine Cafes. The column was added after the CSVs were created, so it isn't in `clients.csv`.
+
 **Coverage:** every reminder stage, window boundaries, paid, queried, promised (future and missed), part-paid, zero balance still open, already contacted today, already reminded at the current stage, stage skipping, late fee allowed vs excluded, a hardship note, and a prompt-injection note.
